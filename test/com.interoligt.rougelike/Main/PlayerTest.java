@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-    Player playerToTest = new Player(1, 1, 1, 1);
+    Player playerToTest = new Player(1, 1);
 
     //Test HP when creating player
     @Test
@@ -18,17 +18,5 @@ class PlayerTest {
     void testBaseSpeed(){
         int baseSpeed = playerToTest.getSpeed();
         assertTrue(baseSpeed > 0);
-    }
-
-    @Test
-    void testStartLevel(){
-        int level = playerToTest.getLevel();
-        assertTrue(level == 1);
-    }
-
-    @Test
-    void testMaxInv(){
-        int maxInv = playerToTest.getMaxInventory();
-        assertTrue(maxInv > 0);
     }
 }

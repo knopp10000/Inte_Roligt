@@ -3,17 +3,21 @@ package com.interoligt.rougelike.Main;
 public class Player {
     int baseHP;
     int baseSpeed;
-    int level;
+    int level = 1;
     int upgradePoints = 0;
     int money;
-    int maxInventory;
-    int experience = 0;
+    Item[] inventory;
 
-    public Player(int baseHP, int baseSpeed, int level, int maxInventory){
+   //Create character
+    public Player(int baseHP, int baseSpeed, Item[] inventory){
         this.baseHP = baseHP;
         this.baseSpeed = baseSpeed;
-        this.level = level;
-        this.maxInventory = maxInventory;
+        this.inventory = inventory;
+    }
+
+    public Player(int baseHP, int baseSpeed){
+        this.baseHP = baseHP;
+        this.baseSpeed = baseSpeed;
     }
 
     public int getBaseHP(){
@@ -33,7 +37,7 @@ public class Player {
     public int getMoney(){
         return money;
     }
-    public int getMaxInventory(){
-        return maxInventory;
+    public Item[] getInventory(){
+        return inventory;
     }
 }
