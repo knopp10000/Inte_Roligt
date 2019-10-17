@@ -52,4 +52,8 @@ abstract class Monster {
     }
     abstract int getExperienceReward();
 
+    @Override
+    public String toString(){
+        return "Name: " + name + ", Level: " + level + ", Element: " + element.toString().substring(0,1) + element.toString().substring(1).toLowerCase();
+    }
 }

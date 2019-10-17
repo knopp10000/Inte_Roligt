@@ -8,7 +8,7 @@ public class BasicMonsterCalculationsTest {
 
     @Test
     void getExperienceRewardTest(){
-        monster = new BasicMonster("Bat", 25, Element.GROUND,1500, 30,25,5);
+        monster = new BasicMonster("Bat", 25, 12,Element.GROUND,1500, 30,25,5);
         assertEquals(monster.getExperienceReward(),300);
     }
 
