@@ -2,9 +2,16 @@ package com.interoligt.rougelike.Main;
 
 public class BasicMonster extends Monster {
 
+
     public BasicMonster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed){
         super(name,level,element, baseHealth, baseArmour, baseDamage, baseSpeed);
+
 ;    }
+
+    @Override
+    int getExperienceReward() {
+        return 0;
+    }
 
     @Override
     public String toString(){
