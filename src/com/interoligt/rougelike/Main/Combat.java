@@ -10,8 +10,17 @@ public class Combat {
         this.room = room;
     }
 
-    private void runTurn(){
-        for(Monster i : enemies);
+    private void runTurnOrder(){
+        Monster[] turnOrder = enemies;
+        for(Monster i : turnOrder) {
+            for (Monster j : turnOrder) {
+                if (j.getSpeed() > i.getSpeed()){
+                    Monster temp = i;
+                    i = j;
+                    j = temp;
+                }
+            }
+        }
 
     }
 }
