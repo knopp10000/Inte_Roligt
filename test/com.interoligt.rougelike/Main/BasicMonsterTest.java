@@ -40,8 +40,11 @@ class BasicMonsterTest {
     void getBaseDamage(){
         assertEquals(monster.getBaseDamage(),4);
     }
-    
+
+    @Test
     void getBaseSpeed(){
         assertEquals(monster.getBaseSpeed(),2);
     }
+
+
 }
