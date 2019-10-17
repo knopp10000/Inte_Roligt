@@ -1,6 +1,5 @@
 package com.interoligt.rougelike.Main;
 
-import static com.interoligt.rougelike.Main.Element.FIRE;
 
 abstract class Monster {
     private int baseHealth, baseArmour, baseDamage, level, baseSpeed, experienceReward;
@@ -16,7 +15,6 @@ abstract class Monster {
         this.baseDamage = baseDamage;
         this.baseSpeed = baseSpeed;
         this.level = level;
-        this.experienceReward = experienceReward;
     }
 
     String getName(){
@@ -28,4 +26,21 @@ abstract class Monster {
     Element getElement(){
         return element;
     }
+
+    int getBaseHealth(){
+        return baseHealth;
+    };
+
+    int getBaseArmour(){
+        return baseArmour;
+    }
+
+    int getBaseDamage(){
+        return baseDamage;
+    }
+
+    int getBaseSpeed(){
+        return baseSpeed;
+    }
+
 }

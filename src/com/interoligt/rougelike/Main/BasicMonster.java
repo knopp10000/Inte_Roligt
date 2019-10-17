@@ -10,4 +10,5 @@ public class BasicMonster extends Monster {
     public String toString(){
         return "Name: " + super.getName() + ", Level: " + super.getLevel() + ", Element: " + super.getElement().toString().substring(0,1) + super.getElement().toString().substring(1).toLowerCase();
     }
+
 }
