@@ -1,12 +1,14 @@
 package com.interoligt.rougelike.Main;
 
-public abstract class Monster {
-    int baseHealth, baseArmour, baseDamage, level, baseSpeed;
-    String name;
-    boolean isActive, isAlive;
-    Element element;
+import static com.interoligt.rougelike.Main.Element.FIRE;
 
-    protected Monster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed){
+abstract class Monster {
+    private int baseHealth, baseArmour, baseDamage, level, baseSpeed, experienceReward;
+    private String name;
+    private boolean isActive, isAlive;
+    private Element element;
+
+    Monster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed){
         this.name = name;
         this.element = element;
         this.baseArmour = baseArmour;
@@ -14,5 +16,16 @@ public abstract class Monster {
         this.baseDamage = baseDamage;
         this.baseSpeed = baseSpeed;
         this.level = level;
+        this.experienceReward = experienceReward;
+    }
+
+    String getName(){
+        return name;
+    }
+    int getLevel(){
+        return level;
+    }
+    Element getElement(){
+        return element;
     }
 }
