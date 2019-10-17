@@ -148,7 +148,7 @@
   
   <path id="library.org.junit.jupiter:junit-jupiter:5.5.2.classpath">
     <pathelement location="${basedir}/lib/apiguardian-api-1.1.0.jar"/>
-    <pathelement location="${basedir}/lib/junit-jupiter-5.5.2.jar"/>
+    <pathelement location="/lib/junit.jar"/>
     <pathelement location="${basedir}/lib/junit-jupiter-api-5.5.2.jar"/>
     <pathelement location="${basedir}/lib/junit-jupiter-engine-5.5.2.jar"/>
     <pathelement location="${basedir}/lib/junit-jupiter-params-5.5.2.jar"/>
@@ -246,7 +246,18 @@
       <include name="test"/>
     </dirset>
   </path>
-  
+
+  <target name="test" depends="compile.module.inte_roligt.tests">
+    <junit printsummary="yes" haltonfailure="no">
+      <classpath refid="inte_roligt.runtime.module.classpath"/>
+      <classpath refid="inte_roligt.module.sourcepath"/>
+      <classpath location="${inte_roligt.testoutput.dir}/com/interoligt/rougelike/Main/"/>
+
+      <test name="test.com.interoligt.rougelike.Main.TestbarKlassTest"/>
+      <test name="test.com.interoligt.rougelike.Main.PlayerTest"/>
+      <test name="test.com.interoligt.rougelike.Main.TestItem"/>
+    </junit>
+  </target>
   
   <target name="compile.module.inte_roligt" depends="compile.module.inte_roligt.production,compile.module.inte_roligt.tests" description="Compile module Inte_Roligt"/>
   
@@ -270,7 +281,7 @@
   
   <target name="compile.module.inte_roligt.tests" depends="register.custom.compilers,compile.module.inte_roligt.production" description="compile module Inte_Roligt; test classes" unless="skip.tests">
     <mkdir dir="${inte_roligt.testoutput.dir}"/>
-    <javac2 destdir="${inte_roligt.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.inte_roligt}/javac">
+    <javac2 destdir="${inte_roligt.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.inte_roligt}/javac" includeantruntime="false">
       <compilerarg line="${compiler.args.inte_roligt}"/>
       <bootclasspath refid="inte_roligt.module.bootclasspath"/>
       <classpath refid="inte_roligt.module.classpath"/>
@@ -286,7 +297,7 @@
     </copy>
   </target>
   
-  <target name="clean.module.inte_roligt" description="cleanup module">
+ <target name="clean.module.inte_roligt" description="cleanup module">
     <delete dir="${inte_roligt.output.dir}"/>
     <delete dir="${inte_roligt.testoutput.dir}"/>
   </target>
@@ -297,7 +308,7 @@
   
   <target name="clean" depends="clean.module.inte_roligt" description="cleanup all"/>
   
-  <target name="build.modules" depends="init, clean, compile.module.inte_roligt" description="build all modules"/>
+  <target name="build.modules" depends="init, clean, compile.module.inte_roligt, test" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
 </project>
