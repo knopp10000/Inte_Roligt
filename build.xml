@@ -55,86 +55,107 @@
   
   <!-- JDK definitions -->
   
-  <property name="jdk.bin.11.0.2" value="${jdk.home.11.0.2}/bin"/>
-  <path id="jdk.classpath.11.0.2">
-    <fileset dir="${jdk.home.11.0.2}">
-      <include name="../jdk-11.0.2!/java.base"/>
-      <include name="../jdk-11.0.2!/java.compiler"/>
-      <include name="../jdk-11.0.2!/java.datatransfer"/>
-      <include name="../jdk-11.0.2!/java.desktop"/>
-      <include name="../jdk-11.0.2!/java.instrument"/>
-      <include name="../jdk-11.0.2!/java.logging"/>
-      <include name="../jdk-11.0.2!/java.management"/>
-      <include name="../jdk-11.0.2!/java.management.rmi"/>
-      <include name="../jdk-11.0.2!/java.naming"/>
-      <include name="../jdk-11.0.2!/java.net.http"/>
-      <include name="../jdk-11.0.2!/java.prefs"/>
-      <include name="../jdk-11.0.2!/java.rmi"/>
-      <include name="../jdk-11.0.2!/java.scripting"/>
-      <include name="../jdk-11.0.2!/java.se"/>
-      <include name="../jdk-11.0.2!/java.security.jgss"/>
-      <include name="../jdk-11.0.2!/java.security.sasl"/>
-      <include name="../jdk-11.0.2!/java.smartcardio"/>
-      <include name="../jdk-11.0.2!/java.sql"/>
-      <include name="../jdk-11.0.2!/java.sql.rowset"/>
-      <include name="../jdk-11.0.2!/java.transaction.xa"/>
-      <include name="../jdk-11.0.2!/java.xml"/>
-      <include name="../jdk-11.0.2!/java.xml.crypto"/>
-      <include name="../jdk-11.0.2!/jdk.accessibility"/>
-      <include name="../jdk-11.0.2!/jdk.aot"/>
-      <include name="../jdk-11.0.2!/jdk.attach"/>
-      <include name="../jdk-11.0.2!/jdk.charsets"/>
-      <include name="../jdk-11.0.2!/jdk.compiler"/>
-      <include name="../jdk-11.0.2!/jdk.crypto.cryptoki"/>
-      <include name="../jdk-11.0.2!/jdk.crypto.ec"/>
-      <include name="../jdk-11.0.2!/jdk.crypto.mscapi"/>
-      <include name="../jdk-11.0.2!/jdk.dynalink"/>
-      <include name="../jdk-11.0.2!/jdk.editpad"/>
-      <include name="../jdk-11.0.2!/jdk.hotspot.agent"/>
-      <include name="../jdk-11.0.2!/jdk.httpserver"/>
-      <include name="../jdk-11.0.2!/jdk.internal.ed"/>
-      <include name="../jdk-11.0.2!/jdk.internal.jvmstat"/>
-      <include name="../jdk-11.0.2!/jdk.internal.le"/>
-      <include name="../jdk-11.0.2!/jdk.internal.opt"/>
-      <include name="../jdk-11.0.2!/jdk.internal.vm.ci"/>
-      <include name="../jdk-11.0.2!/jdk.internal.vm.compiler"/>
-      <include name="../jdk-11.0.2!/jdk.internal.vm.compiler.management"/>
-      <include name="../jdk-11.0.2!/jdk.jartool"/>
-      <include name="../jdk-11.0.2!/jdk.javadoc"/>
-      <include name="../jdk-11.0.2!/jdk.jcmd"/>
-      <include name="../jdk-11.0.2!/jdk.jconsole"/>
-      <include name="../jdk-11.0.2!/jdk.jdeps"/>
-      <include name="../jdk-11.0.2!/jdk.jdi"/>
-      <include name="../jdk-11.0.2!/jdk.jdwp.agent"/>
-      <include name="../jdk-11.0.2!/jdk.jfr"/>
-      <include name="../jdk-11.0.2!/jdk.jlink"/>
-      <include name="../jdk-11.0.2!/jdk.jshell"/>
-      <include name="../jdk-11.0.2!/jdk.jsobject"/>
-      <include name="../jdk-11.0.2!/jdk.jstatd"/>
-      <include name="../jdk-11.0.2!/jdk.localedata"/>
-      <include name="../jdk-11.0.2!/jdk.management"/>
-      <include name="../jdk-11.0.2!/jdk.management.agent"/>
-      <include name="../jdk-11.0.2!/jdk.management.jfr"/>
-      <include name="../jdk-11.0.2!/jdk.naming.dns"/>
-      <include name="../jdk-11.0.2!/jdk.naming.rmi"/>
-      <include name="../jdk-11.0.2!/jdk.net"/>
-      <include name="../jdk-11.0.2!/jdk.pack"/>
-      <include name="../jdk-11.0.2!/jdk.rmic"/>
-      <include name="../jdk-11.0.2!/jdk.scripting.nashorn"/>
-      <include name="../jdk-11.0.2!/jdk.scripting.nashorn.shell"/>
-      <include name="../jdk-11.0.2!/jdk.sctp"/>
-      <include name="../jdk-11.0.2!/jdk.security.auth"/>
-      <include name="../jdk-11.0.2!/jdk.security.jgss"/>
-      <include name="../jdk-11.0.2!/jdk.unsupported"/>
-      <include name="../jdk-11.0.2!/jdk.unsupported.desktop"/>
-      <include name="../jdk-11.0.2!/jdk.xml.dom"/>
-      <include name="../jdk-11.0.2!/jdk.zipfs"/>
+  <property name="jdk.bin.11.0.5" value="${jdk.home.11.0.5}/bin"/>
+  <path id="jdk.classpath.11.0.5">
+    <fileset dir="${jdk.home.11.0.5}">
+      <include name="../jdk-11.0.5!/java.base"/>
+      <include name="../jdk-11.0.5!/java.compiler"/>
+      <include name="../jdk-11.0.5!/java.datatransfer"/>
+      <include name="../jdk-11.0.5!/java.desktop"/>
+      <include name="../jdk-11.0.5!/java.instrument"/>
+      <include name="../jdk-11.0.5!/java.logging"/>
+      <include name="../jdk-11.0.5!/java.management"/>
+      <include name="../jdk-11.0.5!/java.management.rmi"/>
+      <include name="../jdk-11.0.5!/java.naming"/>
+      <include name="../jdk-11.0.5!/java.net.http"/>
+      <include name="../jdk-11.0.5!/java.prefs"/>
+      <include name="../jdk-11.0.5!/java.rmi"/>
+      <include name="../jdk-11.0.5!/java.scripting"/>
+      <include name="../jdk-11.0.5!/java.se"/>
+      <include name="../jdk-11.0.5!/java.security.jgss"/>
+      <include name="../jdk-11.0.5!/java.security.sasl"/>
+      <include name="../jdk-11.0.5!/java.smartcardio"/>
+      <include name="../jdk-11.0.5!/java.sql"/>
+      <include name="../jdk-11.0.5!/java.sql.rowset"/>
+      <include name="../jdk-11.0.5!/java.transaction.xa"/>
+      <include name="../jdk-11.0.5!/java.xml"/>
+      <include name="../jdk-11.0.5!/java.xml.crypto"/>
+      <include name="../jdk-11.0.5!/jdk.accessibility"/>
+      <include name="../jdk-11.0.5!/jdk.aot"/>
+      <include name="../jdk-11.0.5!/jdk.attach"/>
+      <include name="../jdk-11.0.5!/jdk.charsets"/>
+      <include name="../jdk-11.0.5!/jdk.compiler"/>
+      <include name="../jdk-11.0.5!/jdk.crypto.cryptoki"/>
+      <include name="../jdk-11.0.5!/jdk.crypto.ec"/>
+      <include name="../jdk-11.0.5!/jdk.crypto.mscapi"/>
+      <include name="../jdk-11.0.5!/jdk.dynalink"/>
+      <include name="../jdk-11.0.5!/jdk.editpad"/>
+      <include name="../jdk-11.0.5!/jdk.hotspot.agent"/>
+      <include name="../jdk-11.0.5!/jdk.httpserver"/>
+      <include name="../jdk-11.0.5!/jdk.internal.ed"/>
+      <include name="../jdk-11.0.5!/jdk.internal.jvmstat"/>
+      <include name="../jdk-11.0.5!/jdk.internal.le"/>
+      <include name="../jdk-11.0.5!/jdk.internal.opt"/>
+      <include name="../jdk-11.0.5!/jdk.internal.vm.ci"/>
+      <include name="../jdk-11.0.5!/jdk.internal.vm.compiler"/>
+      <include name="../jdk-11.0.5!/jdk.internal.vm.compiler.management"/>
+      <include name="../jdk-11.0.5!/jdk.jartool"/>
+      <include name="../jdk-11.0.5!/jdk.javadoc"/>
+      <include name="../jdk-11.0.5!/jdk.jcmd"/>
+      <include name="../jdk-11.0.5!/jdk.jconsole"/>
+      <include name="../jdk-11.0.5!/jdk.jdeps"/>
+      <include name="../jdk-11.0.5!/jdk.jdi"/>
+      <include name="../jdk-11.0.5!/jdk.jdwp.agent"/>
+      <include name="../jdk-11.0.5!/jdk.jfr"/>
+      <include name="../jdk-11.0.5!/jdk.jlink"/>
+      <include name="../jdk-11.0.5!/jdk.jshell"/>
+      <include name="../jdk-11.0.5!/jdk.jsobject"/>
+      <include name="../jdk-11.0.5!/jdk.jstatd"/>
+      <include name="../jdk-11.0.5!/jdk.localedata"/>
+      <include name="../jdk-11.0.5!/jdk.management"/>
+      <include name="../jdk-11.0.5!/jdk.management.agent"/>
+      <include name="../jdk-11.0.5!/jdk.management.jfr"/>
+      <include name="../jdk-11.0.5!/jdk.naming.dns"/>
+      <include name="../jdk-11.0.5!/jdk.naming.rmi"/>
+      <include name="../jdk-11.0.5!/jdk.net"/>
+      <include name="../jdk-11.0.5!/jdk.pack"/>
+      <include name="../jdk-11.0.5!/jdk.rmic"/>
+      <include name="../jdk-11.0.5!/jdk.scripting.nashorn"/>
+      <include name="../jdk-11.0.5!/jdk.scripting.nashorn.shell"/>
+      <include name="../jdk-11.0.5!/jdk.sctp"/>
+      <include name="../jdk-11.0.5!/jdk.security.auth"/>
+      <include name="../jdk-11.0.5!/jdk.security.jgss"/>
+      <include name="../jdk-11.0.5!/jdk.unsupported"/>
+      <include name="../jdk-11.0.5!/jdk.unsupported.desktop"/>
+      <include name="../jdk-11.0.5!/jdk.xml.dom"/>
+      <include name="../jdk-11.0.5!/jdk.zipfs"/>
     </fileset>
   </path>
   
-  <property name="project.jdk.home" value="${jdk.home.11.0.2}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.11.0.2}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.11.0.2"/>
+  <property name="project.jdk.home" value="${jdk.home.11.0.5}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.11.0.5}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.11.0.5"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.org.apache.ant:ant-junit:1.8.4.classpath">
+    <pathelement location="${basedir}/lib/ant-1.8.4.jar"/>
+    <pathelement location="${basedir}/lib/ant-junit-1.8.4.jar"/>
+    <pathelement location="${basedir}/lib/ant-launcher-1.8.4.jar"/>
+    <pathelement location="${basedir}/lib/junit-3.8.2.jar"/>
+  </path>
+  
+  <path id="library.org.junit.jupiter:junit-jupiter:5.5.2.classpath">
+    <pathelement location="${basedir}/lib/apiguardian-api-1.1.0.jar"/>
+    <pathelement location="${basedir}/lib/junit-jupiter-5.5.2.jar"/>
+    <pathelement location="${basedir}/lib/junit-jupiter-api-5.5.2.jar"/>
+    <pathelement location="${basedir}/lib/junit-jupiter-engine-5.5.2.jar"/>
+    <pathelement location="${basedir}/lib/junit-jupiter-params-5.5.2.jar"/>
+    <pathelement location="${basedir}/lib/junit-platform-commons-1.5.2.jar"/>
+    <pathelement location="${basedir}/lib/junit-platform-engine-1.5.2.jar"/>
+    <pathelement location="${basedir}/lib/opentest4j-1.2.0.jar"/>
+  </path>
   <!-- Register Custom Compiler Taskdefs -->
   <property name="javac2.home" value="${idea.home}/lib"/>
   <path id="javac2.classpath">
@@ -173,10 +194,14 @@
   
   <path id="inte_roligt.module.production.classpath">
     <path refid="${module.jdk.classpath.inte_roligt}"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.5.2.classpath"/>
+    <path refid="library.org.apache.ant:ant-junit:1.8.4.classpath"/>
   </path>
   
   <path id="inte_roligt.runtime.production.module.classpath">
     <pathelement location="${inte_roligt.output.dir}"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.5.2.classpath"/>
+    <path refid="library.org.apache.ant:ant-junit:1.8.4.classpath"/>
   </path>
   
   <path id="inte_roligt.module.classpath">
@@ -186,6 +211,8 @@
     <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.5.2/junit-jupiter-api-5.5.2.jar"/>
     <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar"/>
     <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.5.2.classpath"/>
+    <path refid="library.org.apache.ant:ant-junit:1.8.4.classpath"/>
   </path>
   
   <path id="inte_roligt.runtime.module.classpath">
@@ -195,6 +222,8 @@
     <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.5.2/junit-jupiter-api-5.5.2.jar"/>
     <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar"/>
     <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.5.2.classpath"/>
+    <path refid="library.org.apache.ant:ant-junit:1.8.4.classpath"/>
   </path>
   
   

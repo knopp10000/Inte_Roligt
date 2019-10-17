@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 
-public class Room {
+/*public class Room {
 
     private boolean activated = false;
     private List<Monster> monsters;
@@ -29,4 +29,4 @@ public class Room {
         return monsters.remove(monster);
     }
 
-}
+}*/
