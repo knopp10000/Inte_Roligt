@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-    Player playerToTest = new Player();
+    Player playerToTest = new Player(1, 1, 1, 1);
 
     //Test HP when creating player
     @Test
@@ -20,10 +20,15 @@ class PlayerTest {
         assertTrue(baseSpeed > 0);
     }
 
-    //Test that item is equipped when equipped
     @Test
-    void testEquip(){
-        
+    void testStartLevel(){
+        int level = playerToTest.getLevel();
+        assertTrue(level == 1);
     }
-    //Test that inventory is either empty or within max limit
+
+    @Test
+    void testMaxInv(){
+        int maxInv = playerToTest.getMaxInventory();
+        assertTrue(maxInv > 0);
+    }
 }
