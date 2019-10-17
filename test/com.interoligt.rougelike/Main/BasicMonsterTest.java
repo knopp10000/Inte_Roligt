@@ -22,29 +22,37 @@ class BasicMonsterTest {
     }
 
     @Test
-    void getElement(){
+    void getElementTest(){
         assertEquals(monster.getElement(),Element.FIRE);
     }
 
     @Test
-    void getBaseHealth(){
+    void getBaseHealthTest(){
         assertEquals(monster.getBaseHealth(), 50);
     }
 
     @Test
-    void getBaseArmour(){
+    void getBaseArmourTest(){
         assertEquals(monster.getBaseArmour(),8);
     }
 
     @Test
-    void getBaseDamage(){
+    void getBaseDamageTest(){
         assertEquals(monster.getBaseDamage(),4);
     }
 
     @Test
-    void getBaseSpeed(){
+    void getBaseSpeedTest(){
         assertEquals(monster.getBaseSpeed(),2);
     }
 
+    @Test
+    void isAliveTest(){
+        assertTrue(monster.isAlive());
+    }
 
+    @Test
+    void isActiveTest(){
+        assertTrue(monster.isActive());
+    }
 }

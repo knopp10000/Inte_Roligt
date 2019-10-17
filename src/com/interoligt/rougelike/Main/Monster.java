@@ -4,7 +4,7 @@ package com.interoligt.rougelike.Main;
 abstract class Monster {
     private int baseHealth, baseArmour, baseDamage, level, baseSpeed, experienceReward;
     private String name;
-    private boolean isActive, isAlive;
+    private boolean Active, Alive;
     private Element element;
 
     Monster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed){
