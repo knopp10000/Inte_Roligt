@@ -1,4 +1,4 @@
 package com.interoligt.rougelike.Main;
 
-public class BasicMonster {
+public class BasicMonster extends Monster {
 }
