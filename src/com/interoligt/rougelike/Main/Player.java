@@ -10,14 +10,30 @@ public class Player {
 
    //Create character
     public Player(int baseHP, int baseSpeed, Item[] inventory){
-        this.baseHP = baseHP;
-        this.baseSpeed = baseSpeed;
+        if(baseHP > 0) {
+            this.baseHP = baseHP;
+        }else{
+            throw new IllegalArgumentException(baseHP + " needs to be above 0");
+        }
+        if(baseSpeed > 0) {
+            this.baseSpeed = baseSpeed;
+        }else{
+            throw new IllegalArgumentException(baseSpeed + " needs to be above 0");
+        }
         this.inventory = inventory;
     }
 
     public Player(int baseHP, int baseSpeed){
-        this.baseHP = baseHP;
-        this.baseSpeed = baseSpeed;
+        if(baseHP > 0) {
+            this.baseHP = baseHP;
+        }else{
+            throw new IllegalArgumentException(baseHP + " needs to be above 0");
+        }
+        if(baseSpeed > 0) {
+            this.baseSpeed = baseSpeed;
+        }else{
+            throw new IllegalArgumentException(baseSpeed + " needs to be above 0");
+        }
     }
 
     public int getBaseHP(){
