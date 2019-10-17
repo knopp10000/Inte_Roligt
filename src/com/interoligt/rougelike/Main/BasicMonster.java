@@ -1,21 +1,18 @@
 package com.interoligt.rougelike.Main;
 
 public class BasicMonster extends Monster {
+    private int expPerLevel;
 
-
-    public BasicMonster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed){
+    public BasicMonster(String name, int level, int expPerLevel, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed){
         super(name,level,element, baseHealth, baseArmour, baseDamage, baseSpeed);
-
+        this.expPerLevel = expPerLevel;
 ;    }
 
     @Override
     int getExperienceReward() {
-        return 0;
+        return expPerLevel*super.getLevel();
     }
 
-    @Override
-    public String toString(){
-        return "Name: " + super.getName() + ", Level: " + super.getLevel() + ", Element: " + super.getElement().toString().substring(0,1) + super.getElement().toString().substring(1).toLowerCase();
-    }
+
 
 }
