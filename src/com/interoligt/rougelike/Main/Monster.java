@@ -4,10 +4,16 @@ package com.interoligt.rougelike.Main;
 abstract class Monster {
     private int baseHealth, baseArmour, baseDamage, level, baseSpeed;
     private String name;
-    private boolean Active = true, Alive = true;
+    private boolean active = true, alive = true;
     private Element element;
 
-    Monster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed){
+    Monster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed) throws NullPointerException, IllegalArgumentException{
+        if(name == null || element == null) {
+            throw new NullPointerException("Neither name nor element is allowed to be null");
+        }
+        else if(name.isBlank() || level <= 0 || baseHealth <= 0 || baseArmour <= 0 || baseDamage <= 0 || baseSpeed <= 0){
+            throw new IllegalArgumentException("Name cannot be blank, and all integers need to be greater than 0");
+        }
         this.name = name;
         this.element = element;
         this.baseArmour = baseArmour;
@@ -44,13 +50,21 @@ abstract class Monster {
     }
 
     boolean isActive(){
-        return Active;
+        return active;
     }
 
     boolean isAlive(){
-        return Alive;
+        return alive;
     }
     abstract int getExperienceReward();
+
+    void setAlive(boolean bool){
+        alive = bool;
+    }
+
+    void setActive(boolean bool){
+        active = bool;
+    }
 
     @Override
     public String toString(){

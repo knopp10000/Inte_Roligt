@@ -83,6 +83,13 @@ public class BasicMonsterConstructorTest {
     }
 
     @Test
+    void constructorBaseArmourNegativeTest() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new BasicMonster("Spider", 5, 12, Element.FIRE, 50, -8, 4, 2);
+        });
+    }
+
+    @Test
     void constructorBaseDamage0Test() {
         assertThrows(IllegalArgumentException.class, () -> {
             new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 8, 0, 2);
