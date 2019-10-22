@@ -3,11 +3,11 @@ package com.interoligt.rougelike.Main;
 public class Combat {
 
     private Monster[] enemies;
-    private Room room;
+    private Player player;
 
-    public Combat(Monster[] enemies, Room room){
+    public Combat(Monster[] enemies, Player player){
         this.enemies = enemies;
-        this.room = room;
+        this.player = player;
     }
 
     private void runTurnOrder(){
