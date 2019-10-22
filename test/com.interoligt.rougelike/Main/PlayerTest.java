@@ -2,6 +2,9 @@ package com.interoligt.rougelike.Main;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
@@ -28,5 +31,14 @@ class PlayerTest {
     @Test
     void testSpeedThrow(){
         assertThrows(IllegalArgumentException.class, () -> new Player( 1, 0));
+    }
+
+    //Test character is naked
+    @Test
+    void testEmptyEquipment(){
+        HashMap<Slot, Equippable> equipment = validPlayer.getEquipment();
+        for(HashMap.Entry slot : equipment.entrySet()){
+            assertTrue(slot.getValue() == null);
+        }
     }
 }
