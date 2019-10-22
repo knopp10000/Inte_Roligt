@@ -4,7 +4,6 @@ package com.interoligt.rougelike.Main;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CombatTest {
@@ -33,7 +32,4 @@ class CombatTest {
         //SKAPA EQUALS FÖR PLAYER
         AssertTrue(turnOrder.get(1).getSpeed() > turnOrder.get(2).getSpeed());
     }
-
-    //Check end
-
 }
