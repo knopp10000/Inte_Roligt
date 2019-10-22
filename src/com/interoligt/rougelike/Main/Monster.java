@@ -3,6 +3,7 @@ package com.interoligt.rougelike.Main;
 
 abstract class Monster {
     private int baseHealth, baseArmour, baseDamage, level, baseSpeed;
+    private int currentHealth;
     private String name;
     private boolean active = true, alive = true;
     private Element element;
@@ -21,6 +22,8 @@ abstract class Monster {
         this.baseDamage = baseDamage;
         this.baseSpeed = baseSpeed;
         this.level = level;
+
+        currentHealth = baseHealth;
     }
 
     String getName(){
@@ -64,6 +67,35 @@ abstract class Monster {
 
     void setActive(boolean bool){
         active = bool;
+    }
+
+    int getCurrentHealth(){
+        return currentHealth;
+    }
+
+    void damage(int dmg){
+        if (!alive){
+            return;
+        }
+        else if(currentHealth <= dmg){
+            currentHealth = 0;
+            alive = false;
+        }
+        else{
+            currentHealth -= dmg;
+        }
+    }
+
+    void heal(int hp){
+        if (!alive){
+            return;
+        }
+        else if(hp + currentHealth >= baseHealth){
+            currentHealth = baseHealth;
+        }
+        else{
+            currentHealth += hp;
+        }
     }
 
     @Override
