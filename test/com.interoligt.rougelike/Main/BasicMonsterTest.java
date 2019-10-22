@@ -73,7 +73,7 @@ class BasicMonsterTest {
     }
 
     @Test
-    void getSpeedTest(){
-        assertEquals(monster.getSpeed(),2);
+    void getBaseSpeedTest(){
+        assertEquals(monster.getBaseSpeed(),2);
     }
 }

@@ -103,12 +103,12 @@ public class BasicMonsterConstructorTest {
     }
 
     @Test
-    void constructorSpeed0Test() {
+    void constructorBaseSpeed0Test() {
         assertThrows(IllegalArgumentException.class, () -> {
             new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 8, 4, 0);});
     }
     @Test
-    void constructorSpeedNegativeTest() {
+    void constructorBaseSpeedNegativeTest() {
         assertThrows(IllegalArgumentException.class, () -> {
             new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 8, 4, -2);});
     }
