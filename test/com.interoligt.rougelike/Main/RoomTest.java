@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
 class RoomTest {
 
     private final Room room = new Room();
@@ -21,4 +20,4 @@ class RoomTest {
         assertTrue(room.isActivated());
     }
 
-}*/
+}
