@@ -5,8 +5,16 @@ public class Player {
     int baseSpeed;
     int level = 1;
     int upgradePoints = 0;
-    int money;
+    int money = 0;
     Item[] inventory;
+    HashMap<Slot, Equippable> equipment = new HashMap<Slot, Equippable>;
+    equipment.put(HEAD, null);
+    equipment.put(SHOULDERS, null);
+    equipment.put(CHEST, null);
+    equipment.put(HANDS, null);
+    equipment.put(LEGS, null);
+    equipment.put(FEET, null);
+
 
    //Create character
     public Player(int baseHP, int baseSpeed, Item[] inventory){
