@@ -21,4 +21,10 @@ public class Effect {
         this.value = value;
     }
 
+    boolean hasDuration(){
+        return hasDuration;
+    }
+    boolean isContinuous(){
+        return continuous;
+    }
 }
