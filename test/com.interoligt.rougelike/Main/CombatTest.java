@@ -3,6 +3,8 @@ package com.interoligt.rougelike.Main;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CombatTest {
@@ -26,12 +28,10 @@ class CombatTest {
 
     //Check that turn order is correct
     @Test
-    void checkTurnorder(){
-        Monster[] monsters = validCombat.getMonsters();
-        int monsterSpeed = monsters[0].getSpeed();
-        Player player = validCombat.getPlayer();
-        int playerSpeed = player.getSpeed();
-        assertTrue(playerSpeed > monsterSpeed);
+    void checkTurnOrder(){
+        HashMap<Integer, Object> turnOrder = validCombat.getOrder();
+        //SKAPA EQUALS FÖR PLAYER
+        AssertTrue(turnOrder.get(1).getSpeed() > turnOrder.get(2).getSpeed());
     }
 
     //Check end
