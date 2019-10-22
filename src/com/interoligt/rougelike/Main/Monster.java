@@ -52,6 +52,11 @@ abstract class Monster {
         return baseSpeed;
     }
 
+    int getSpeed(){
+        // ToDo: add speed effect to calc of speed when accessible
+        return baseSpeed;
+    }
+
     boolean isActive(){
         return active;
     }
