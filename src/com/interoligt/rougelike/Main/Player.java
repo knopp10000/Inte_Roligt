@@ -12,15 +12,14 @@ public class Player {
     int currentHP;
     int currentSpeed;
     int currentDamage;
+    Inventory[] inventory;
 
     boolean alive = true;
     ArrayList<Effect> effects = new ArrayList<Effect>();
-
-    Item[] inventory = new Item[10];
     HashMap<Slot, Equippable> equipment = new HashMap<Slot, Equippable>;
 
    //Create character
-    public Player(int baseHP, int baseSpeed, int baseDamage){
+    public Player(int baseHP, int baseSpeed, int baseDamage, Inventory[] inventory){
         if(baseHP > 0) {
             this.baseHP = baseHP;
             currentHP = baseHP;
@@ -60,7 +59,7 @@ public class Player {
     public int getMoney(){
         return money;
     }
-    public Item[] getInventory(){
+    public Inventory[] getInventory(){
         return inventory;
     }
 
