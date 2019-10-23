@@ -27,4 +27,14 @@ public class Effect {
     boolean isContinuous(){
         return continuous;
     }
+
+    int getDuration(){
+        return duration;
+    }
+    double getValue(){
+        return value;
+    }
+
+
+
 }
