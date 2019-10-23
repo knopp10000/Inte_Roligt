@@ -81,6 +81,17 @@ public class EffectTest {
         assertEquals(target.getCurrentDamage(),125);
     }
     @Test
+    void getValueWithSignPosTest(){
+        Effect health = new Effect(target,"Health Regen", 'h', '+', false, 500);
+        assertEquals(health.getValueWithSign(),500);
+    }
+    @Test
+    void getValueWithSignNegTest(){
+        Effect health = new Effect(target,"Health Drain", 'h', '-', false, 500);
+        assertEquals(health.getValueWithSign(),-500);
+    }
+
+    @Test
     void applyContinuousEffectHealthIncreaseWithoutDurationTest(){
         Effect health = new Effect(target,"Health Regen", 'h', '+', false, 500);
         health.applyEffect();
@@ -105,7 +116,7 @@ public class EffectTest {
         Effect health = new Effect(target, "Health boost", 'h','+',false,500,2);
         health.applyEffect();
         health.applyEffect();
-        assertEquals(target.getCurrentHealth(), 8000); 
+        assertEquals(target.getCurrentHealth(), 8000);
         health.applyEffect();
         assertEquals(target.getCurrentHealth(), 7000);
     }
