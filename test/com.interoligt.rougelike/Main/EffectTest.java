@@ -10,7 +10,7 @@ public class EffectTest {
     BasicMonster target;
     @BeforeEach
     void createTarget() {
-        target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 75, 4);
+        target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 75, 10);
     }
     @Test
     void effectConstructorTest(){
@@ -73,20 +73,41 @@ public class EffectTest {
         assertEquals(damage.getDuration(), 4);
     }
 
-    //    @Test
-//    void applyEffectDamageIncreaseWithoutDurationTest(){
-//        Effect damage = new Effect(target,"Increase Damage", 'd', '+', false, 50, 4);
-//        damage.applyEffect();
-//        assertEquals(target.getCurrentDamage(),125);
-//    }
+        @Test
+    void applyEffectDamageIncreaseWithoutDurationTest(){
+        Effect damage = new Effect(target,"Increase Damage", 'd', '+', false, 50);
+        damage.applyEffect();
+        damage.applyEffect();
+        assertEquals(target.getCurrentDamage(),125);
+    }
+    @Test
     void applyContinuousEffectHealthIncreaseWithoutDurationTest(){
-        Effect health = new Effect(target,"Health Regen", 'h', '+', true, 500);
+        Effect health = new Effect(target,"Health Regen", 'h', '+', false, 500);
         health.applyEffect();
         health.applyEffect();
         health.applyEffect();
         health.applyEffect();
         assertEquals(target.getCurrentHealth(), 9000);
 
+    }
+    @Test
+    void applyContinuousEffectSpeedDecreaseWithDurationTest(){
+        Effect speed = new Effect(target, "Speed Decrease",'s','-',true,1,5);
+        speed.applyEffect();
+        speed.applyEffect();
+        speed.applyEffect();
+        speed.applyEffect();
+        assertEquals(target.getSpeed(),6);
+
+    }
+    @Test
+    void applyEffectSpeedDecreaseWithDurationTest(){
+        Effect health = new Effect(target, "Health boost", 'h','+',false,500,2);
+        health.applyEffect();
+        health.applyEffect();
+        assertEquals(target.getCurrentHealth(), 8000); 
+        health.applyEffect();
+        assertEquals(target.getCurrentHealth(), 7000);
     }
 
 
