@@ -50,6 +50,9 @@ public class InventoryTest {
     }
 
     @Test
+    void testFailItemCounter(){ assertThrows(Exception.class, () -> new Inventory(-1, items)); }
+
+    @Test
     void testRemoveItem(){
        ArrayList<Item> whatShouldRemain = new ArrayList<>(Arrays.asList(sword, boots));
         inventoryToTest.removeItem(gun);

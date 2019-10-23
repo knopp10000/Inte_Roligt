@@ -7,14 +7,27 @@ public class Inventory {
     private ArrayList<Item> items = new ArrayList<>();
 
     public Inventory(int maxItemCount, ArrayList<Item> items){
-        if (items.size()> maxItemCount){
-            throw new IllegalArgumentException();
-        } else {
-            this.maxItemCount = maxItemCount;
-            this.items = items;
+        if(maxItemCount > 0 ){
+            if (items.size()> maxItemCount){
+                throw new IllegalArgumentException();
+            } else {
+                this.maxItemCount = maxItemCount;
+                this.items = items;
+            }
+        }else{
+            throw new IllegalArgumentException("Max Item Count needs to be over zero");
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public Inventory(int maxItemCount){
+        if(maxItemCount > 0 ) {
+            this.maxItemCount = maxItemCount;
+        } else{ throw new IllegalArgumentException("Max Item Count needs to be over zero"); }
+    }
+
+>>>>>>> Stashed changes
     public boolean removeItem(Item item) {
         return items.remove(item);
     }
