@@ -2,7 +2,7 @@ package com.interoligt.rougelike.Main;
 
 public class Map {
 
-    int playerCordX = 0;
+    public int playerCordX = 0;
     int playerCordY = 0;
 
     Room[][] map;

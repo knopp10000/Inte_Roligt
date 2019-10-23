@@ -14,6 +14,6 @@ class MapTest {
 
     @Test
     void testmoving(){
-        assertTrue(map.move('u') == room2);
+        assertTrue(map.move('u') == room);
     }
 }
