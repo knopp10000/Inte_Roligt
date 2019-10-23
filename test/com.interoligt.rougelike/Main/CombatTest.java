@@ -7,8 +7,10 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CombatTest {
-
-    Combat validCombat = new Combat(new Monster[new Monster("Spider", 5, 5, Element.FIRE, 10, 2, 5, 2)], new Player(1, 12, new Item[]));
+    Player player = new Player(1,12);
+    Monster spider = new BasicMonster("Spider", 5, 5, Element.FIRE, 10, 2, 5, 2);
+    Monster[] monsters = {spider};
+    Combat validCombat = new Combat(monsters, player);
     validCombat.initialize();
 
     //Check that fetched player is not null
