@@ -14,7 +14,7 @@ public class Player {
     int currentDamage;
 
     boolean alive = true;
-    ArrayList<Effect> effect = new ArrayList<Effect>();
+    ArrayList<Effect> effects = new ArrayList<Effect>();
 
     Item[] inventory = new Item[10];
     HashMap<Slot, Equippable> equipment = new HashMap<Slot, Equippable>;
@@ -64,6 +64,10 @@ public class Player {
         return inventory;
     }
 
+    public int getCurrentDamage(){
+        return currentDamage;
+    }
+
     public HashMap<Slot, Equippable> getEquipment() {
         return equipment;
     }
@@ -90,25 +94,12 @@ public class Player {
         equipment.remove(slot);
     }
 
-    public void addEffect(Effect effect, String effectType){
-        switch(effectType){
-            case "off":
-                offEffect.add(effect);
-                break;
-
-            case "def":
-                defEffect.add(effect);
-                break;
-
-            case "con":
-                continEffect.add(effect);
-                break;
-            default:
-                break;
-        }
+    public void addEffect(Effect effect){
+        effects.add(effect);
     }
 
     public void removeEffect(Effect effect){
+        effects.remove(effect);
     }
 
     public void setHP(int health){
