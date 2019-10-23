@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Inventory {
     private int maxItemCount;
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> items;
 
     public Inventory(int maxItemCount, ArrayList<Item> items){
         if (items.size()> maxItemCount){
@@ -13,6 +13,10 @@ public class Inventory {
             this.maxItemCount = maxItemCount;
             this.items = items;
         }
+    }
+
+    public Inventory(int maxItemCount){
+        this.maxItemCount = maxItemCount;
     }
 
     public boolean removeItem(Item item) {
