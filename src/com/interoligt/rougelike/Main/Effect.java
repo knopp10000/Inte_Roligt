@@ -1,7 +1,7 @@
 package com.interoligt.rougelike.Main;
 
 public class Effect {
-    private Monster target; //TODO Change to Target
+    private Target target;
     private int duration;
     private int counter;
     private boolean hasDuration, isContinuous,hasBeenApplied;
@@ -12,14 +12,14 @@ public class Effect {
     private char stat, operator;
 
 
-    Effect(Monster target, String name, char stat, char operator, boolean isContinuous, int value, int duration) { //TODO Change to Target
+    Effect(Target target, String name, char stat, char operator, boolean isContinuous, int value, int duration) {
         this(target, name, stat,operator,isContinuous,value);
         this.duration = duration;
         counter = duration;
         hasDuration = true;
     }
 
-    Effect (Monster target, String name, char stat, char operator, boolean isContinuous, int value) throws IllegalArgumentException,NullPointerException{ //TODO Change to Target
+    Effect (Target target, String name, char stat, char operator, boolean isContinuous, int value) throws IllegalArgumentException,NullPointerException{
         if(target == null || name == null || name.isBlank()){
             throw new NullPointerException("Target and name cannot be null or blank");
         }
@@ -33,6 +33,7 @@ public class Effect {
         this.isContinuous = isContinuous;
         this.value = value;
         this.isActive = true;
+        target.addEffect(this);
 
     }
 
@@ -56,7 +57,7 @@ public class Effect {
     }
 
 
-    double getValueWithSign(){
+    int getValueWithSign(){
         if(operator=='-'){
             return -value;
         }
@@ -127,20 +128,20 @@ public class Effect {
 
     public void removeEffect(){
         isActive = false;
-//        target.removeEffect(this);
+        target.removeEffect(this);
         target = null;
     }
 
     private void applyEffectSwitch() {
         switch (stat) {
             case 'h':
-                target.setHealth();
+                target.setHealth(target.getCurrentHP()+getValueWithSign());
                 break;
             case 's':
-                target.setSpeed();
+                target.setSpeed(target.getSpeed()+getValueWithSign());
                 break;
             case 'd':
-                target.setDamage();
+                target.setDamage(target.getCurrentDamage()+getValueWithSign());
                 break;
             default:
                 throw new IllegalArgumentException("Only h (health), s (speed) and d (damage) are valid inputs");

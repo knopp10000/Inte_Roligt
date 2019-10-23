@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EffectTest {
-    //TODO Change to Target target;
-    BasicMonster target;
+
+    Target target;
     @BeforeEach
     void createTarget() {
         target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 75, 10);
@@ -98,7 +98,7 @@ public class EffectTest {
         health.applyEffect();
         health.applyEffect();
         health.applyEffect();
-        assertEquals(target.getCurrentHealth(), 9000);
+        assertEquals(target.getCurrentHP(), 9000);
 
     }
 
@@ -117,9 +117,9 @@ public class EffectTest {
         Effect health = new Effect(target, "Health boost", 'h','+',false,500,2);
         health.applyEffect();
         health.applyEffect();
-        assertEquals(target.getCurrentHealth(), 8000);
+        assertEquals(target.getCurrentHP(), 8000);
         health.applyEffect();
-        assertEquals(target.getCurrentHealth(), 7000);
+        assertEquals(target.getCurrentHP(), 7000);
     }
 
 }
