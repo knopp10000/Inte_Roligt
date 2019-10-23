@@ -17,7 +17,7 @@ public class EffectTest {
     }
     @Test
     void effectHasDurationTrueTest(){
-        Effect speed = new Effect("Speed Multiplication",'s','*',false,1.5,3);
+        Effect speed = new Effect("Increased speed",'s','-',false,1.5,3);
         assertTrue(speed.hasDuration());
     }
     @Test
@@ -32,48 +32,38 @@ public class EffectTest {
     }
     @Test
     void effectAppliedEachTurnFalse(){
-        Effect damage = new Effect("Increase Damage", 'd', '*',false, 1);
+        Effect damage = new Effect("Increase Damage", 'd', '+',false, 1);
         assertFalse(damage.isContinuous());
     }
     @Test
     void getValueTest(){
-        Effect damage = new Effect("Increase Damage", 'd', '*',false, 1);
+        Effect damage = new Effect("Increase Damage", 'd', '+',false, 1);
         assertEquals(damage.getValue(),1);
     }
     @Test
     void getStatCharTest(){
-        Effect damage = new Effect("Increase Damage", 'd', '*',false, 1);
+        Effect damage = new Effect("Increase Damage", 'd', '+',false, 1);
         assertEquals(damage.getStat(),'d');
     }
-
     @Test
     void getCounterNoCounterTest(){
-        Effect damage = new Effect("Increase Damage", 'd', '*',false, 1);
+        Effect damage = new Effect("Increase Damage", 'd', '+',false, 1);
         assertThrows(NullPointerException.class,()-> {damage.getCounter();});
     }
-
     @Test
     void getCounterTest(){
-        Effect damage = new Effect("Increase Damage", 'd', '*',false, 1,4);
+        Effect damage = new Effect("Increase Damage", 'd', '+',false, 1,4);
         assertEquals(damage.getCounter(),4);
     }
     @Test
     void getDurationNoDurationTest(){
-        Effect damage = new Effect("Increase Damage", 'd', '*',false, 1);
+        Effect damage = new Effect("Increase Damage", 'd', '+',false, 1);
         assertThrows(NullPointerException.class,()-> damage.getDuration());
     }
-
     @Test
     void getDurationTest() {
-        Effect damage = new Effect("Increase Damage", 'd', '*', false, 1, 4);
+        Effect damage = new Effect("Increase Damage", 'd', '+', false, 1, 4);
         assertEquals(damage.getDuration(), 4);
     }
-
-    @Test
-    void getOperatorTest(){
-        Effect damage = new Effect("Increase Damage", 'd', '*',false, 1);
-        assertEquals(damage.getOperator(),'*');
-    }
-
 
 }
