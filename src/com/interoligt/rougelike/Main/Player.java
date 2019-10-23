@@ -3,53 +3,44 @@ package com.interoligt.rougelike.Main;
 import java.util.ArrayList;
 
 public class Player {
-    int baseHP;
-    int baseSpeed;
+    private int baseHP;
+    private int baseSpeed;
     int level = 1;
     int upgradePoints = 0;
     int money = 0;
-    ArrayList<Effect> offEffect = new ArrayList<Effect>();
-    ArrayList<Effect> defEffect = new ArrayList<Effect>();
-    ArrayList<Effect> continEffect = new ArrayList<Effect>();
+    private int baseDamage;
+    int currentHP;
+    int currentSpeed;
+    int currentDamage;
+
+    boolean alive = true;
+    ArrayList<Effect> effect = new ArrayList<Effect>();
 
     Item[] inventory = new Item[10];
     HashMap<Slot, Equippable> equipment = new HashMap<Slot, Equippable>;
 
-    equipment.put(WEAPON, null);
-    equipment.put(HEAD, null);
-    equipment.put(SHOULDERS, null);
-    equipment.put(CHEST, null);
-    equipment.put(HANDS, null);
-    equipment.put(LEGS, null);
-    equipment.put(FEET, null);
-
-
    //Create character
-    public Player(int baseHP, int baseSpeed, Item[] inventory){
+    public Player(int baseHP, int baseSpeed, int baseDamage){
         if(baseHP > 0) {
             this.baseHP = baseHP;
+            currentHP = baseHP;
         }else{
-            throw new IllegalArgumentException(baseHP + " needs to be above 0");
+            throw new IllegalArgumentException("HP needs to be above 0");
         }
         if(baseSpeed > 0) {
             this.baseSpeed = baseSpeed;
+            currentSpeed = baseSpeed;
         }else{
-            throw new IllegalArgumentException(baseSpeed + " needs to be above 0");
+            throw new IllegalArgumentException("Speed needs to be above 0");
+        }
+        if(baseDamage > 0) {
+            this.baseDamage = baseSpeed;
+            currentDamage = baseDamage;
+        }else{
+            throw new IllegalArgumentException("Base damage needs to be above 0");
         }
         this.inventory = inventory;
-    }
 
-    public Player(int baseHP, int baseSpeed){
-        if(baseHP > 0) {
-            this.baseHP = baseHP;
-        }else{
-            throw new IllegalArgumentException(baseHP + " needs to be above 0");
-        }
-        if(baseSpeed > 0) {
-            this.baseSpeed = baseSpeed;
-        }else{
-            throw new IllegalArgumentException(baseSpeed + " needs to be above 0");
-        }
     }
 
     public int getBaseHP(){
@@ -84,7 +75,7 @@ public class Player {
                 break;
             }
         }
-        if(equipment.get(newEquipment.getSlot()) != null){
+        if(!equipment.containsKey(newEquipment.getSlot())){
             unEquipItem(newEquipment.getSlot());
         }
     }
@@ -96,7 +87,57 @@ public class Player {
                 break;
             }
         }
-        equipment.replace(slot, null);
+        equipment.remove(slot);
     }
+
+    public void addEffect(Effect effect, String effectType){
+        switch(effectType){
+            case "off":
+                offEffect.add(effect);
+                break;
+
+            case "def":
+                defEffect.add(effect);
+                break;
+
+            case "con":
+                continEffect.add(effect);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void removeEffect(Effect effect){
+    }
+
+    public void setHP(int health){
+        currentHP += health;
+
+        if(currentHP <= 0){
+            alive = false;
+        }
+
+    }
+
+    public boolean isAlive(){
+        return alive;
+    }
+
+    public void setSpeed(int speed){
+        currentSpeed += speed;
+        if(currentSpeed < 0){
+            currentSpeed = 0;
+        }
+    }
+
+    public void setDamage(int damage){
+        currentDamage += damage;
+        if(currentDamage < 0){
+            currentDamage = 0;
+        }
+    }
+
+
 
 }
