@@ -6,9 +6,11 @@ public class Effect {
     private int counter;
     private boolean hasDuration, isContinuous,hasBeenApplied;
     private boolean isActive;
+
     private String name;
     private int value;
     private char stat, operator;
+
 
     Effect(Monster target, String name, char stat, char operator, boolean isContinuous, int value, int duration) { //TODO Change to Target
         this(target, name, stat,operator,isContinuous,value);
@@ -16,6 +18,7 @@ public class Effect {
         counter = duration;
         hasDuration = true;
     }
+
     Effect (Monster target, String name, char stat, char operator, boolean isContinuous, int value) throws IllegalArgumentException,NullPointerException{ //TODO Change to Target
         if(target == null || name == null || name.isBlank()){
             throw new NullPointerException("Target and name cannot be null or blank");
@@ -30,6 +33,7 @@ public class Effect {
         this.isContinuous = isContinuous;
         this.value = value;
         this.isActive = true;
+
     }
 
     boolean hasDuration(){
@@ -50,6 +54,7 @@ public class Effect {
     double getValue(){
         return value;
     }
+
 
     double getValueWithSign(){
         if(operator=='-'){
@@ -73,6 +78,7 @@ public class Effect {
     }
 
     public void applyEffect(){
+
         if(isActive) {
             if (hasDuration && isContinuous) {
                 applyContinuousDurationEffect();
@@ -139,6 +145,7 @@ public class Effect {
             default:
                 throw new IllegalArgumentException("Only h (health), s (speed) and d (damage) are valid inputs");
         }
+
     }
 
     String getStatusName(){

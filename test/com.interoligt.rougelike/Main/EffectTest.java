@@ -101,6 +101,7 @@ public class EffectTest {
         assertEquals(target.getCurrentHealth(), 9000);
 
     }
+
     @Test
     void applyContinuousEffectSpeedDecreaseWithDurationTest(){
         Effect speed = new Effect(target, "Speed Decrease",'s','-',true,1,5);
@@ -120,6 +121,5 @@ public class EffectTest {
         health.applyEffect();
         assertEquals(target.getCurrentHealth(), 7000);
     }
-
 
 }
