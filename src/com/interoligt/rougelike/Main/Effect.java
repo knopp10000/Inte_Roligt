@@ -1,20 +1,22 @@
 package com.interoligt.rougelike.Main;
 
 public class Effect {
-   private int duration;
-   private int counter;
-   private boolean hasDuration, isContinuous;
-   private String name;
-   private int value;
-   private char stat, operator;
+    private Monster target; //TODO Change to Target
+    private int duration;
+    private int counter;
+    private boolean hasDuration, isContinuous;
+    private String name;
+    private int value;
+    private char stat, operator;
 
-    Effect(String name, char stat, char operator, boolean isContinuous, int value, int duration){
-        this(name, stat,operator,isContinuous,value);
+    Effect(Monster target, String name, char stat, char operator, boolean isContinuous, int value, int duration){ //TODO Change to Target
+        this(target, name, stat,operator,isContinuous,value);
         this.duration = duration;
         counter = duration;
         hasDuration = true;
     }
-    Effect (String name, char stat, char operator, boolean isContinuous, int value){
+    Effect (Monster target, String name, char stat, char operator, boolean isContinuous, int value){ //TODO Change to Target
+        this.target = target;
         this.name = name;
         this.stat = stat;
         this.operator = operator;
@@ -53,6 +55,9 @@ public class Effect {
         }
     }
 
+    public void applyEffect(){
+    }
+
     String getStatusName(){
         switch(stat) {
             case 'h':
@@ -65,7 +70,6 @@ public class Effect {
                 return "No Status";
         }
     }
-
     String getEffectType(){
             switch(operator) {
                 case '+':
@@ -76,7 +80,6 @@ public class Effect {
                     return "No Effect";
             }
         }
-
     @Override
     public String toString(){
         String str = "Name: " + name + ", Stat: " + getStatusName() + ", Effect: " + getEffectType() + " " + value;
