@@ -8,7 +8,7 @@ public class EffectTest {
     @Test
     void effectConstructorTest(){
         Effect speed = new Effect("Speed Increase",'s', '+', false, 5, 5);
-        assertEquals(speed.toString(),"Name: Speed Increase, Stat: Armour, Effect: Add 5, Duration: 5 turns");
+        assertEquals(speed.toString(),"Name: Speed Increase, Stat: Speed, Effect: Add 5, Duration: 5 turns");
     }
     @Test
     void effectConstructorContTest(){
@@ -17,7 +17,7 @@ public class EffectTest {
     }
     @Test
     void effectHasDurationTrueTest(){
-        Effect speed = new Effect("Increased speed",'s','-',false,1.5,3);
+        Effect speed = new Effect("Increased speed",'s','-',false,1,3);
         assertTrue(speed.hasDuration());
     }
     @Test
