@@ -15,12 +15,12 @@ public class EffectTest {
     @Test
     void effectConstructorTest(){
         Effect speed = new Effect(target,"Speed Increase",'s', '+', false, 5, 5);
-        assertEquals(speed.toString(),"Target: Name: Speed Increase, Stat: Speed, Effect: Add 5, Duration: 5 turns");
+        assertEquals(speed.toString(),"Target: Bowser, Name: Speed Increase, Stat: Speed, Effect: Add 5, Duration: 5 turns");
     }
     @Test
     void effectConstructorContTest(){
         Effect health = new Effect(target,"Health Regen",'h', '+', true, 5, 5);
-        assertEquals(health.toString(),"Target: Name: Health Regen, Stat: Health, Effect: Add 5 each turn, Duration: 5 turns");
+        assertEquals(health.toString(),"Target: Bowser, Name: Health Regen, Stat: Health, Effect: Add 5 each turn, Duration: 5 turns");
     }
     @Test
     void effectHasDurationTrueTest(){
