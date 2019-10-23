@@ -1,22 +1,17 @@
 package com.interoligt.rougelike.Main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Player {
-    private int baseHP;
-    private int baseSpeed;
-    int level = 1;
+public class Player extends Target{
+
     int upgradePoints = 0;
     int money = 0;
-    private int baseDamage;
-    int currentHP;
-    int currentSpeed;
-    int currentDamage;
     Inventory inventory;
 
     boolean alive = true;
     ArrayList<Effect> effects = new ArrayList<Effect>();
-    HashMap<Slot, Equippable> equipment = new HashMap<Slot, Equippable>;
+    HashMap<Slot, Equippable> equipment = new HashMap<>();
 
    //Create character
     public Player(int baseHP, int baseSpeed, int baseDamage, Inventory inventory){
@@ -28,17 +23,16 @@ public class Player {
         }
         if(baseSpeed > 0) {
             this.baseSpeed = baseSpeed;
-            currentSpeed = baseSpeed;
         }else{
             throw new IllegalArgumentException("Speed needs to be above 0");
         }
         if(baseDamage > 0) {
             this.baseDamage = baseSpeed;
-            currentDamage = baseDamage;
         }else{
             throw new IllegalArgumentException("Base damage needs to be above 0");
         }
         this.inventory = inventory;
+        level = 1;
     }
 
     public int getBaseHP(){
@@ -63,35 +57,32 @@ public class Player {
         return inventory;
     }
 
-    public int getCurrentDamage(){
-        return currentDamage;
-    }
 
     public HashMap<Slot, Equippable> getEquipment() {
         return equipment;
     }
 
-    public void equipItem(Equippable newEquipment){
-        for(i = 0; i < inventory.length; i++){
-            if(i.equals(newEquipment)){
-                inventory[i] = null;
-                break;
-            }
-        }
-        if(!equipment.containsKey(newEquipment.getSlot())){
-            unEquipItem(newEquipment.getSlot());
-        }
-    }
+//    public void equipItem(Equippable newEquipment){
+//        for(i = 0; i < inventory.length; i++){
+//            if(i.equals(newEquipment)){
+//                inventory[i] = null;
+//                break;
+//            }
+//        }
+//        if(!equipment.containsKey(newEquipment.getSlot())){
+//            unEquipItem(newEquipment.getSlot());
+//        }
+//    }
 
-    public void unEquipItem(Slot slot){
-        for(Item i : inventory){
-            if(i == null){
-                i = equipment.get(slot);
-                break;
-            }
-        }
-        equipment.remove(slot);
-    }
+//    public void unEquipItem(Slot slot){
+//        for(Item i : inventory){
+//            if(i == null){
+//                i = equipment.get(slot);
+//                break;
+//            }
+//        }
+//        equipment.remove(slot);
+//    }
 
     public void addEffect(Effect effect){
         effects.add(effect);
@@ -114,17 +105,17 @@ public class Player {
         return alive;
     }
 
-    public void setSpeed(int speed){
-        currentSpeed += speed;
-        if(currentSpeed < 0){
-            currentSpeed = 0;
-        }
-    }
-
-    public void setDamage(int damage){
-        currentDamage += damage;
-        if(currentDamage < 0){
-            currentDamage = 0;
-        }
-    }
+//    public void setSpeed(int speed){
+//        currentSpeed += speed;
+//        if(currentSpeed < 0){
+//            currentSpeed = 0;
+//        }
+//    }
+//
+//    public void setDamage(int damage){
+//        currentDamage += damage;
+//        if(currentDamage < 0){
+//            currentDamage = 0;
+//        }
+//    }
 }

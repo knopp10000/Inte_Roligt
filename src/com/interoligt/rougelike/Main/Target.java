@@ -4,9 +4,8 @@ public class Target {
     int baseHP;
     int baseSpeed;
     int baseDamage;
+    int currentHP;
     int level;
-
-    int currentHealth;
     String name;
 
     String getName(){
@@ -26,8 +25,12 @@ public class Target {
         return baseSpeed;
     }
 
-    int getCurrentHealth(){
-        return currentHealth;
+    int getCurrentHP(){
+        return currentHP;
+    }
+
+    public int getCurrentDamage(){
+        return baseDamage;
     }
 
     int getSpeed(){

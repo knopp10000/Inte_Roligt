@@ -18,7 +18,7 @@ abstract class Monster extends Target{
         super.baseDamage = baseDamage;
         super.baseSpeed = baseSpeed;
         super.level = level;
-        super.currentHealth = baseHealth;
+        super.currentHP = baseHealth;
     }
 
     Element getElement(){
@@ -47,12 +47,12 @@ abstract class Monster extends Target{
         if (!alive){
             return;
         }
-        else if(currentHealth <= dmg){
-            currentHealth = 0;
+        else if(currentHP <= dmg){
+            currentHP = 0;
             alive = false;
         }
         else{
-            currentHealth -= dmg;
+            currentHP -= dmg;
         }
     }
 
@@ -60,11 +60,11 @@ abstract class Monster extends Target{
         if (!alive){
             return;
         }
-        else if(hp + currentHealth >= baseHP){
-            currentHealth = baseHP;
+        else if(hp + currentHP >= baseHP){
+            currentHP = baseHP;
         }
         else{
-            currentHealth += hp;
+            currentHP += hp;
         }
     }
 
