@@ -12,14 +12,14 @@ public class Player {
     int currentHP;
     int currentSpeed;
     int currentDamage;
-    Inventory[] inventory;
+    Inventory inventory;
 
     boolean alive = true;
     ArrayList<Effect> effects = new ArrayList<Effect>();
     HashMap<Slot, Equippable> equipment = new HashMap<Slot, Equippable>;
 
    //Create character
-    public Player(int baseHP, int baseSpeed, int baseDamage, Inventory[] inventory){
+    public Player(int baseHP, int baseSpeed, int baseDamage, Inventory inventory){
         if(baseHP > 0) {
             this.baseHP = baseHP;
             currentHP = baseHP;
@@ -39,7 +39,6 @@ public class Player {
             throw new IllegalArgumentException("Base damage needs to be above 0");
         }
         this.inventory = inventory;
-
     }
 
     public int getBaseHP(){
@@ -59,7 +58,8 @@ public class Player {
     public int getMoney(){
         return money;
     }
-    public Inventory[] getInventory(){
+
+   public Inventory getInventory(){
         return inventory;
     }
 
@@ -127,7 +127,4 @@ public class Player {
             currentDamage = 0;
         }
     }
-
-
-
 }
