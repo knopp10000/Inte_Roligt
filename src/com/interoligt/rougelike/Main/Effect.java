@@ -135,13 +135,13 @@ public class Effect {
     private void applyEffectSwitch() {
         switch (stat) {
             case 'h':
-                target.setHealth(target.getCurrentHP()+getValueWithSign());
+                target.changeHealth(getValueWithSign());
                 break;
             case 's':
-                target.setSpeed(target.getSpeed()+getValueWithSign());
+                target.changeSpeed(getValueWithSign());
                 break;
             case 'd':
-                target.setDamage(target.getCurrentDamage()+getValueWithSign());
+                target.changeDamage(getValueWithSign());
                 break;
             default:
                 throw new IllegalArgumentException("Only h (health), s (speed) and d (damage) are valid inputs");
