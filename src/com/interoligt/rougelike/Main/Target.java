@@ -62,4 +62,8 @@ abstract public class Target {
     int getSpeed(){
         return baseSpeed;
     }
+
+    int getCurrentSpeed(){
+        return currentSpeed;
+    }
 }

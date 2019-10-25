@@ -9,6 +9,7 @@ public class Effect {
 
     private String name;
     private int value;
+    private int totValue;
     private char stat, operator;
 
 
@@ -127,12 +128,29 @@ public class Effect {
     }
 
     public void removeEffect(){
+        if(hasDuration && !isContinuous){
+            switch (stat) {
+                case 'h':
+                    target.changeHealth(-totValue);
+                    break;
+                case 's':
+                    target.changeSpeed(-totValue);
+                    break;
+                case 'd':
+                    target.changeDamage(-totValue);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Only h (health), s (speed) and d (damage) are valid inputs");
+            }
+        }
+
         isActive = false;
         target.removeEffect(this);
         target = null;
     }
 
     private void applyEffectSwitch() {
+        totValue += getValueWithSign();
         switch (stat) {
             case 'h':
                 target.changeHealth(getValueWithSign());

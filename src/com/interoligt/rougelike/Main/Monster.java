@@ -22,6 +22,8 @@ abstract class Monster extends Target{
         super.baseSpeed = baseSpeed;
         super.level = level;
         super.currentHP = baseHealth;
+        super.currentDamage = baseDamage;
+        super.currentSpeed = baseSpeed;
     }
 
     Element getElement(){
