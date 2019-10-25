@@ -1,12 +1,25 @@
 package com.interoligt.rougelike.Main;
 
-public class Target {
+import java.util.ArrayList;
+
+abstract public class Target {
     int baseHP;
     int baseSpeed;
     int baseDamage;
     int currentHP;
+    int currentSpeed;
+    int currentDamage;
     int level;
     String name;
+    ArrayList<Effect> effects = new ArrayList<Effect>();
+
+    public void addEffect(Effect effect){
+        effects.add(effect);
+    }
+
+    public void removeEffect(Effect effect){
+        effects.remove(effect);
+    }
 
     String getName(){
         return name;
@@ -28,13 +41,25 @@ public class Target {
     int getCurrentHP(){
         return currentHP;
     }
+    abstract void changeHealth(int health);
+    public void changeSpeed(int speed){
+        currentSpeed += speed;
+        if (currentSpeed<0){
+            currentSpeed = 0;
+        }
+    }
+    public void changeDamage(int damage){
+        currentDamage += damage;
+        if(currentDamage<0){
+            currentDamage = 0;
+        }
+    }
 
     public int getCurrentDamage(){
-        return baseDamage;
+        return currentDamage;
     }
 
     int getSpeed(){
-        // ToDo: add speed effect to calc of speed when accessible
         return baseSpeed;
     }
 }

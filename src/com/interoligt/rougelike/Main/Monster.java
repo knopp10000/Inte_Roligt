@@ -1,9 +1,12 @@
 package com.interoligt.rougelike.Main;
 
 
+import java.util.ArrayList;
+
 abstract class Monster extends Target{
     private boolean active = true, alive = true;
     private Element element;
+
 
     Monster(String name, int level, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed) throws NullPointerException, IllegalArgumentException{
         if(name == null || element == null) {
@@ -25,7 +28,6 @@ abstract class Monster extends Target{
         return element;
     }
 
-
     boolean isActive(){
         return active;
     }
@@ -43,28 +45,14 @@ abstract class Monster extends Target{
         active = bool;
     }
 
-    void damage(int dmg){
-        if (!alive){
-            return;
-        }
-        else if(currentHP <= dmg){
-            currentHP = 0;
-            alive = false;
-        }
-        else{
-            currentHP -= dmg;
-        }
-    }
-
-    void heal(int hp){
-        if (!alive){
-            return;
-        }
-        else if(hp + currentHP >= baseHP){
-            currentHP = baseHP;
-        }
-        else{
-            currentHP += hp;
+    void changeHealth(int health){
+        if(alive){
+            currentHP += health;
+            if(currentHP<=0){
+                currentHP = 0;
+                alive = false;
+                active = false;
+            }
         }
     }
 
