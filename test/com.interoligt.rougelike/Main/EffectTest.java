@@ -100,6 +100,7 @@ public class EffectTest {
         health.applyEffect();
         assertEquals(target.getCurrentHP(), 9000);
 
+
     }
 
     @Test

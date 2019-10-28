@@ -63,11 +63,6 @@ class BasicMonsterTest {
     }
 
     @Test
-    void getBaseArmourTest(){
-        assertEquals(monster.currentHP,8);
-    }
-
-    @Test
     void getBaseDamageTest(){
         assertEquals(monster.getBaseDamage(),4);
     }

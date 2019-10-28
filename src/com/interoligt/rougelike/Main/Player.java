@@ -54,6 +54,12 @@ public class Player extends Target{
     public int getMoney(){
         return money;
     }
+    public void addMoney(int m){
+        money += m;
+    }
+    public void withdrawMoney(int m){
+        money -= m; 
+    }
 
    public Inventory getInventory(){
         return inventory;
