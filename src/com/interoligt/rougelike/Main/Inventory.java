@@ -18,8 +18,6 @@ public class Inventory {
             throw new IllegalArgumentException("Max Item Count needs to be over zero");
         }
     }
-
-
     public Inventory(int maxItemCount){
         if(maxItemCount > 0 ) {
             this.maxItemCount = maxItemCount;
