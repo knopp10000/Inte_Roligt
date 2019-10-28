@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class Inventory {
     private int maxItemCount;
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item> items;
 
     public Inventory(int maxItemCount, ArrayList<Item> items){
         if(maxItemCount > 0 ){
-            if (items.size() > maxItemCount){
-                throw new IllegalArgumentException();
-            } else {
-                this.maxItemCount = maxItemCount;
-                this.items = items;
+            if (items != null) {
+                if (items.size() <= maxItemCount) {
+                    this.items = items;
+                }else{
+                    throw new IllegalArgumentException("items exceed the maxItemCount");
+                }
             }
+            this.maxItemCount = maxItemCount;
         }else{
             throw new IllegalArgumentException("Max Item Count needs to be over zero");
         }

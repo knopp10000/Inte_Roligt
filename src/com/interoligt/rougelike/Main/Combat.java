@@ -1,21 +1,30 @@
 package com.interoligt.rougelike.Main;
 
 public class Combat {
-
     private Monster[] enemies;
     private Player player;
     private Target[] turnOrder;
 
     public Combat(Monster[] enemies, Player player){
-        this.enemies = enemies;
-        this.player = player;
-        turnOrder = new Target[enemies.length+1];
+        if (player != null){
+            this.player = player;
+        }else{
+            throw new IllegalArgumentException("player cant be null");
+        }
+        if(enemies != null) {
+            this.enemies = enemies;
+        }else {
+            throw new IllegalArgumentException("enemies cant be null");
+        }
+        this.turnOrder = new Target[enemies.length+1];
+        setTurnOrder();
     }
 
-    private void setTargetOrder(){
-        for(int i = 0; i < enemies.length; i++){
-            turnOrder[i] = enemies[i];
-        }
+    private void setTurnOrder(){
+//        for(int i = 0; i < enemies.length; i++){
+//            turnOrder[i] = enemies[i];
+//        }
+        System.arraycopy(enemies,0,turnOrder,0,enemies.length);
         turnOrder[enemies.length] = player;
 
         for(int i = 0; i < turnOrder.length; i++) {
@@ -31,13 +40,13 @@ public class Combat {
     }
 
     public Target[] getTurnOrder() {
-        setTargetOrder();
+        setTurnOrder();
         return turnOrder;
     }
 
     private boolean enemiesAreAlive(){
         for(Monster m : enemies){
-            if(m.isAlive()){
+            if(m.isAlive){
                 return true;
             }
         }return false;
@@ -52,16 +61,16 @@ public class Combat {
     }
 
     public boolean runTurn(){
-        while(player.isAlive() && enemiesAreAlive()) {
+        while(player.isAlive && enemiesAreAlive()) {
             for (Target t : getTurnOrder()) {
                 if (t instanceof Player) {
                     Player p = (Player)t;
-                    p.applyEffect();
+                    p.applyEffects();
                     p.makeTurn(enemies);
                 }
                 if (t instanceof BasicMonster) {
                     Monster m = (Monster)t;
-                    m.applyEffect();
+                    m.applyEffects();
                     m.makeTurn(player);
                 }
             }
