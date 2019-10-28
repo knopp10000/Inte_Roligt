@@ -15,6 +15,31 @@ class ShopTest {
 
 
     @Test
+    void testPurchaseWithoutRequieredMoneyAmount(){
+        ArrayList<Item> items = new ArrayList<>();
+        Inventory inventory = new Inventory(100, items);
+        Player player = new Player(100, 100, 100, inventory);
+        Shop shop = new Shop(1);
+        shop.setPlayer(player);
+        shop.addItem(firstItem);
+        assertFalse(shop.buyItem(firstItem));
+    }
+
+    @Test
+    void testPurchaseWithRequieredMoneyAmount(){
+        ArrayList<Item> items = new ArrayList<>();
+        Inventory inventory = new Inventory(100, items);
+        Player player = new Player(100, 100, 100, inventory);
+        player.addMoney(100);
+        Shop shop = new Shop(1);
+        shop.setPlayer(player);
+        shop.addItem(firstItem);
+        assertTrue(shop.buyItem(firstItem));
+        assertEquals(98, player.getMoney());
+    }
+
+
+    @Test
     void testExceededMaximumItems(){
 
         Shop emptyShop = new Shop(2);
