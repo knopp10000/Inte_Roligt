@@ -10,7 +10,7 @@ public class Player extends Target{
     Inventory inventory;
 
     boolean alive = true;
-    ArrayList<Effect> effects = new ArrayList<Effect>();
+
     HashMap<Slot, Equippable> equipment = new HashMap<>();
 
    //Create character
@@ -23,11 +23,13 @@ public class Player extends Target{
         }
         if(baseSpeed > 0) {
             this.baseSpeed = baseSpeed;
+            this.currentSpeed = baseSpeed;
         }else{
             throw new IllegalArgumentException("Speed needs to be above 0");
         }
         if(baseDamage > 0) {
-            this.baseDamage = baseSpeed;
+            this.baseDamage = baseDamage;
+            this.currentDamage = currentDamage;
         }else{
             throw new IllegalArgumentException("Base damage needs to be above 0");
         }
@@ -40,7 +42,7 @@ public class Player extends Target{
     }
 
     public int getSpeed(){
-        return baseSpeed;
+        return currentSpeed;
     }
 
     public int getLevel(){
@@ -90,22 +92,16 @@ public class Player extends Target{
 //        equipment.remove(slot);
 //    }
 
-    public void addEffect(Effect effect){
-        effects.add(effect);
-    }
-
-    public void removeEffect(Effect effect){
-        effects.remove(effect);
-    }
-
-    public void setHP(int health){
-        currentHP += health;
-
-        if(currentHP <= 0){
-            alive = false;
+    public void changeHealth(int health){
+        if(alive){
+            currentHP += health;
+            if(currentHP <= 0) {
+                currentHP = 0;
+                alive = false;
+            }
         }
-
     }
+
 
     public boolean isAlive(){
         return alive;
