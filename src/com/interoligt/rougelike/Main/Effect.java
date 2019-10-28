@@ -13,8 +13,12 @@ public class Effect {
     private char stat, operator;
 
 
-    Effect(Target target, String name, char stat, char operator, boolean isContinuous, int value, int duration) {
+    Effect(Target target, String name, char stat, char operator, boolean isContinuous, int value, int duration) throws IllegalArgumentException {
         this(target, name, stat,operator,isContinuous,value);
+        if(duration<=0){
+            target.removeEffect(this);
+            throw new IllegalArgumentException("If duration is added to constructor, the value has to be larger than 0");
+        }
         this.duration = duration;
         counter = duration;
         hasDuration = true;
@@ -80,7 +84,6 @@ public class Effect {
     }
 
     public void applyEffect(){
-
         if(isActive) {
             if (hasDuration && isContinuous) {
                 applyContinuousDurationEffect();
@@ -92,9 +95,7 @@ public class Effect {
                 applySingleEffect();
             }
         }
-        else{
-            removeEffect();
-        }
+
     }
     public void applyContinuousDurationEffect(){
         if(counter > 0){
@@ -146,10 +147,10 @@ public class Effect {
 
         isActive = false;
         target.removeEffect(this);
-        target = null;
+
     }
 
-    private void applyEffectSwitch() {
+    private void applyEffectSwitch() throws IllegalArgumentException{
         totValue += getValueWithSign();
         switch (stat) {
             case 'h':
