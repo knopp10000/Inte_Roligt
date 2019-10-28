@@ -93,13 +93,15 @@ public class EffectTest {
 
     @Test
     void applyContinuousEffectHealthIncreaseWithoutDurationTest(){
+        Effect damage = new Effect(target,"Decrease health", 'h', '-', false, 3000);
+        damage.applyEffect();
         Effect health = new Effect(target,"Health Regen", 'h', '+', true, 500);
         health.applyEffect();
         health.applyEffect();
         health.applyEffect();
         health.applyEffect();
 
-        assertEquals(target.getCurrentHP(), 9000);
+        assertEquals(target.getCurrentHP(), 6000);
 
 
     }
@@ -116,12 +118,14 @@ public class EffectTest {
     }
     @Test
     void applyEffectSpeedDecreaseWithDurationTest(){
+        Effect damage = new Effect(target,"Decrease health", 'h', '-', false, 1000);
+        damage.applyEffect();
         Effect health = new Effect(target, "Health boost", 'h','+',false,500,2);
         health.applyEffect();
         health.applyEffect();
-        assertEquals(target.getCurrentHP(), 7500);
+        assertEquals(target.getCurrentHP(), 6500);
         health.applyEffect();
-        assertEquals(target.getCurrentHP(), 7000);
+        assertEquals(target.getCurrentHP(), 6000);
     }
 
 }
