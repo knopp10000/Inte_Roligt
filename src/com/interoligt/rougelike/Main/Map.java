@@ -1,8 +1,7 @@
 package com.interoligt.rougelike.Main;
 
-public class Map {
-
-    public int playerCordX = 0;
+public class Map{
+    int playerCordX = 0;
     int playerCordY = 0;
 
     Room[][] map;
@@ -11,20 +10,33 @@ public class Map {
         this.map = map;
     }
 
-    Room move(Character dir) throws IllegalArgumentException {
+    Room move(Character dir) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
+        Room newRoom;
         switch (dir){
             case 'u':
-                Room room = map[playerCordX][playerCordY + 1];
-                if (room != null){
-                    playerCordY += 1;
+                try{
+                    return map[playerCordX][playerCordY + 1];
+                } catch (ArrayIndexOutOfBoundsException e){
+                    return null;
                 }
-                return room;
             case 'd':
-                return map[playerCordX][playerCordY - 1];
+                try{
+                    return map[playerCordX][playerCordY - 1];
+                } catch (ArrayIndexOutOfBoundsException e){
+                    return null;
+                }
             case 'r':
-                return map[playerCordX + 1][playerCordY];
+                try{
+                    return map[playerCordX + 1][playerCordY];
+                } catch (ArrayIndexOutOfBoundsException e){
+                    return null;
+                }
             case 'l':
-                return map[playerCordX - 1][playerCordY];
+                try {
+                    return map[playerCordX - 1][playerCordY];
+                } catch (ArrayIndexOutOfBoundsException e){
+                return null;
+            }
         }
         throw new IllegalArgumentException("only: u, d, r, l are valid inputs.");
     }
