@@ -51,7 +51,7 @@ abstract class Monster extends Target{
         if(alive){
             currentHP += health;
             if(currentHP>baseHP){
-                currentHP = baseHP; 
+                currentHP = baseHP;
             }
             if(currentHP<=0){
                 currentHP = 0;
