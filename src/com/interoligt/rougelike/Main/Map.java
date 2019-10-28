@@ -1,13 +1,31 @@
 package com.interoligt.rougelike.Main;
 
 public class Map{
-    int playerCordX = 0;
-    int playerCordY = 0;
+    private int playerCordX;
+    private int playerCordY;
 
-    Room[][] map;
+    private Room[][] map;
 
-    public Map(Room[][] map){
+    public Map(Room[][] map, int playerCordX, int playerCordY){
         this.map = map;
+        this.playerCordX = playerCordX;
+        this.playerCordY = playerCordY;
+    }
+
+    public void setPlayerCordX(int playerCordX) {
+        this.playerCordX = playerCordX;
+    }
+
+    public void setPlayerCordY(int playerCordY) {
+        this.playerCordY = playerCordY;
+    }
+
+    public int getPlayerCordX() {
+        return playerCordX;
+    }
+
+    public int getPlayerCordY() {
+        return playerCordY;
     }
 
     Room move(Character dir) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
@@ -15,25 +33,33 @@ public class Map{
         switch (dir){
             case 'u':
                 try{
-                    return map[playerCordX][playerCordY + 1];
+                    newRoom = map[playerCordX][playerCordY + 1];
+                    playerCordY += 1;
+                    return newRoom;
                 } catch (ArrayIndexOutOfBoundsException e){
                     return null;
                 }
             case 'd':
                 try{
-                    return map[playerCordX][playerCordY - 1];
+                    newRoom = map[playerCordX][playerCordY - 1];
+                    playerCordY -= 1;
+                    return newRoom;
                 } catch (ArrayIndexOutOfBoundsException e){
                     return null;
                 }
             case 'r':
                 try{
-                    return map[playerCordX + 1][playerCordY];
+                    newRoom = map[playerCordX + 1][playerCordY];
+                    playerCordX += 1;
+                    return newRoom;
                 } catch (ArrayIndexOutOfBoundsException e){
                     return null;
                 }
             case 'l':
                 try {
-                    return map[playerCordX - 1][playerCordY];
+                    newRoom = map[playerCordX - 1][playerCordY];
+                    playerCordX -= 1;
+                    return newRoom;
                 } catch (ArrayIndexOutOfBoundsException e){
                 return null;
             }
