@@ -35,6 +35,14 @@ public class Combat {
         return turnOrder;
     }
 
+    private boolean enemiesAreAlive(){
+        for(Monster m : enemies){
+            if(m.isAlive()){
+                return true;
+            }
+        }return false;
+    }
+
     public Player getPlayer(){
         return player;
     }
@@ -42,4 +50,28 @@ public class Combat {
     public Monster[] getMonsters(){
         return enemies;
     }
+
+    public boolean runTurn(){
+        while(player.isAlive() && enemiesAreAlive()) {
+            for (Target t : getTurnOrder()) {
+                if (t instanceof Player) {
+                    Player p = (Player)t;
+                    p.applyEffect();
+                    p.makeTurn(enemies);
+                }
+                if (t instanceof BasicMonster) {
+                    Monster m = (Monster)t;
+                    m.applyEffect();
+                    m.makeTurn(player);
+                }
+            }
+        }
+        if(!enemiesAreAlive()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

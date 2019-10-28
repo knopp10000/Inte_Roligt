@@ -13,6 +13,12 @@ abstract public class Target {
     String name;
     ArrayList<Effect> effects = new ArrayList<Effect>();
 
+    public void applyEffect(){
+        for(Effect e : effects){
+            e.applyEffect();
+        }
+    }
+
     public void addEffect(Effect effect){
         effects.add(effect);
     }

@@ -37,6 +37,15 @@ public class Player extends Target{
         level = 1;
     }
 
+    public void makeTurn(Monster[] monsters){
+        Monster target = chooseTarget(monsters);
+    }
+
+    private Monster chooseTarget(Monster[] monsters){
+        return monsters[0];
+    }
+
+
     public int getBaseHP(){
         return baseHP;
     }
