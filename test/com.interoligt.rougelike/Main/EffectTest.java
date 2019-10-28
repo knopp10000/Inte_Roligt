@@ -98,7 +98,9 @@ public class EffectTest {
         health.applyEffect();
         health.applyEffect();
         health.applyEffect();
+
         assertEquals(target.getCurrentHP(), 9000);
+
 
     }
 
