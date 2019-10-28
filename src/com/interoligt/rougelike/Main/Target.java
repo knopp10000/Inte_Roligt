@@ -14,7 +14,7 @@ abstract public class Target {
     boolean isAlive = true;
     ArrayList<Effect> effects = new ArrayList<Effect>();
 
-    public Target(int maxHP, int baseSpeed, int baseDamage, int level){
+  public Target(int maxHP, int baseSpeed, int baseDamage, int level){
         if(maxHP > 0) {
             this.maxHP = maxHP;
             currentHP = maxHP;
