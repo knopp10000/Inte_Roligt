@@ -8,7 +8,7 @@ public class Inventory {
 
     public Inventory(int maxItemCount, ArrayList<Item> items){
         if(maxItemCount > 0 ){
-            if (items.size()> maxItemCount){
+            if (items.size() > maxItemCount){
                 throw new IllegalArgumentException();
             } else {
                 this.maxItemCount = maxItemCount;
@@ -19,10 +19,7 @@ public class Inventory {
         }
     }
     public Inventory(int maxItemCount){
-        if(maxItemCount > 0 ) {
-            this.maxItemCount = maxItemCount;
-        } else{ throw new IllegalArgumentException("Max Item Count needs to be over zero"); }
-    }
+        this(maxItemCount, null);   }
 
     public boolean removeItem(Item item) {
         return items.remove(item);
@@ -38,8 +35,8 @@ public class Inventory {
 
      public int getWeight(){
         int weight = 0;
-        for (Item item : items ){
-            weight =+ item.getWeight();
+        for (Item item : items){
+            weight += item.getWeight();
         }
         return weight;
     }
