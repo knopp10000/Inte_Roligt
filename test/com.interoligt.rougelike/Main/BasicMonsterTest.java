@@ -59,12 +59,7 @@ class BasicMonsterTest {
 
     @Test
     void getBaseHealthTest(){
-        assertEquals(monster.getBaseHealth(), 50);
-    }
-
-    @Test
-    void getBaseArmourTest(){
-        assertEquals(monster.getBaseArmour(),8);
+        assertEquals(monster.currentHP, 50);
     }
 
     @Test

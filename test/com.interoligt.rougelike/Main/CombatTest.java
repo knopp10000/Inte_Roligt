@@ -4,13 +4,15 @@ package com.interoligt.rougelike.Main;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CombatTest {
-
-    Combat validCombat = new Combat(new Monster[new Monster("Spider", 5, 5, Element.FIRE, 10, 2, 5, 2)], new Player(1, 12, new Item[]));
-    validCombat.initialize();
+    Player player = new Player(1,12, 2, new Inventory(10, new ArrayList<Item>()));
+    Monster spider = new BasicMonster("Spider", 5, 5, Element.FIRE, 10, 2, 5, 2);
+    Monster[] monsters = {spider};
+    Combat validCombat = new Combat(monsters, player);
 
     //Check that fetched player is not null
     @Test
@@ -29,9 +31,9 @@ class CombatTest {
     //Check that turn order is correct
     @Test
     void checkTurnOrder(){
-        HashMap<Integer, Object> turnOrder = validCombat.getOrder();
+        Target[] turnOrder = validCombat.getTurnOrder();
         //SKAPA EQUALS FÖR PLAYER
-        AssertTrue(turnOrder.get(1).getSpeed() > turnOrder.get(2).getSpeed());
+        assertTrue(turnOrder[0].getSpeed() >= turnOrder[1].getSpeed());
     }
 }
 */

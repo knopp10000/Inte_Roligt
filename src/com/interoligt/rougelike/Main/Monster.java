@@ -1,10 +1,7 @@
 package com.interoligt.rougelike.Main;
 
 
-abstract class Monster {
-    private int baseHealth, baseArmour, baseDamage, level, baseSpeed;
-    private int currentHealth;
-    private String name;
+abstract class Monster extends Target{
     private boolean active = true, alive = true;
     private Element element;
 
@@ -15,47 +12,19 @@ abstract class Monster {
         else if(name.isBlank() || level <= 0 || baseHealth <= 0 || baseArmour <= 0 || baseDamage <= 0 || baseSpeed <= 0){
             throw new IllegalArgumentException("Name cannot be blank, and all integers need to be greater than 0");
         }
-        this.name = name;
         this.element = element;
-        this.baseArmour = baseArmour;
-        this.baseHealth = baseHealth;
-        this.baseDamage = baseDamage;
-        this.baseSpeed = baseSpeed;
-        this.level = level;
-
-        currentHealth = baseHealth;
+        super.name = name;
+        super.baseHP = baseHealth;
+        super.baseDamage = baseDamage;
+        super.baseSpeed = baseSpeed;
+        super.level = level;
+        super.currentHP = baseHealth;
     }
 
-    String getName(){
-        return name;
-    }
-    int getLevel(){
-        return level;
-    }
     Element getElement(){
         return element;
     }
 
-    int getBaseHealth(){
-        return baseHealth;
-    };
-
-    int getBaseArmour(){
-        return baseArmour;
-    }
-
-    int getBaseDamage(){
-        return baseDamage;
-    }
-
-    int getBaseSpeed(){
-        return baseSpeed;
-    }
-
-    int getSpeed(){
-        // ToDo: add speed effect to calc of speed when accessible
-        return baseSpeed;
-    }
 
     boolean isActive(){
         return active;
@@ -74,20 +43,16 @@ abstract class Monster {
         active = bool;
     }
 
-    int getCurrentHealth(){
-        return currentHealth;
-    }
-
     void damage(int dmg){
         if (!alive){
             return;
         }
-        else if(currentHealth <= dmg){
-            currentHealth = 0;
+        else if(currentHP <= dmg){
+            currentHP = 0;
             alive = false;
         }
         else{
-            currentHealth -= dmg;
+            currentHP -= dmg;
         }
     }
 
@@ -95,11 +60,11 @@ abstract class Monster {
         if (!alive){
             return;
         }
-        else if(hp + currentHealth >= baseHealth){
-            currentHealth = baseHealth;
+        else if(hp + currentHP >= baseHP){
+            currentHP = baseHP;
         }
         else{
-            currentHealth += hp;
+            currentHP += hp;
         }
     }
 
