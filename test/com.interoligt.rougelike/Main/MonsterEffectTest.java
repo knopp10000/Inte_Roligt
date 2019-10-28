@@ -6,7 +6,7 @@ public class MonsterEffectTest {
     BasicMonster monster;
     @BeforeEach
     void setMonster(){
-        monster = new BasicMonster("Turtle",3,50,Element.WATER,500,50,2,1);
+        monster = new BasicMonster("Turtle",3,50,Element.WATER,500,50,1);
     }
     @Test
     void speedEffectTest(){

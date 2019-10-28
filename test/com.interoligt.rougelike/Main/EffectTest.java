@@ -5,23 +5,24 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class EffectTest {
 
-    Target target;
-    @BeforeEach
-    void createTarget() {
-        target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 75, 10);
-    }
-    @Test
-    void effectConstructorTest(){
-        Effect speed = new Effect(target,"Speed Increase",'s', '+', false, 5, 5);
-        assertEquals(speed.toString(),"Target: Bowser, Name: Speed Increase, Stat: Speed, Effect: Add 5, Duration: 5 turns");
-    }
-    @Test
-    void effectConstructorContTest(){
-        Effect health = new Effect(target,"Health Regen",'h', '+', true, 5, 5);
-        assertEquals(health.toString(),"Target: Bowser, Name: Health Regen, Stat: Health, Effect: Add 5 each turn, Duration: 5 turns");
-    }
+    Target target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 75, 10);;
+//    @BeforeEach
+//    void createTarget() {
+//        target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 10);
+//    }
+//    @Test
+//    void effectConstructorTest(){
+//        Effect speed = new Effect(target,"Speed Increase",'s', '+', false, 5, 5);
+//        assertEquals(speed.toString(),"Target: Bowser, Name: Speed Increase, Stat: Speed, Effect: Add 5, Duration: 5 turns");
+//    }
+//    @Test
+//    void effectConstructorContTest(){
+//        Effect health = new Effect(target,"Health Regen",'h', '+', true, 5, 5);
+//        assertEquals(health.toString(),"Target: Bowser, Name: Health Regen, Stat: Health, Effect: Add 5 each turn, Duration: 5 turns");
+//    }
     @Test
     void effectHasDurationTrueTest(){
         Effect speed = new Effect(target,"Increased speed",'s','-',false,1,3);

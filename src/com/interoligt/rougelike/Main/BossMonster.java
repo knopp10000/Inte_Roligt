@@ -1,11 +1,11 @@
 package com.interoligt.rougelike.Main;
 
-public class BossMonster extends Monster {
+abstract class BossMonster extends Monster {
     private int experienceReward;
 
-    public BossMonster(String name, int level, int experienceReward, Element element, int baseHealth, int baseArmour, int baseDamage, int baseSpeed) throws IllegalArgumentException{
-        super(name,level,element, baseHealth, baseArmour, baseDamage, baseSpeed);
-        if(experienceReward <= 0){
+    public BossMonster(String name, int level, int experienceReward, Element element, int baseHealth, int baseDamage, int baseSpeed) throws IllegalArgumentException{
+        super(name,level,element, baseHealth, baseDamage, baseSpeed);
+        if(experienceReward < 0){
             throw new IllegalArgumentException("All integers need to be greater than 0");
         }
         this.experienceReward = experienceReward;
@@ -15,5 +15,6 @@ public class BossMonster extends Monster {
     int getExperienceReward() {
         return experienceReward;
     }
+
 
 }
