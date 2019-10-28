@@ -50,6 +50,9 @@ abstract class Monster extends Target{
     void changeHealth(int health){
         if(alive){
             currentHP += health;
+            if(currentHP>baseHP){
+                currentHP = baseHP; 
+            }
             if(currentHP<=0){
                 currentHP = 0;
                 alive = false;
