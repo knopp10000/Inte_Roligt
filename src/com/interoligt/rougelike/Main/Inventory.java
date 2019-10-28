@@ -19,15 +19,13 @@ public class Inventory {
         }
     }
 
-<<<<<<< Updated upstream
-=======
+
     public Inventory(int maxItemCount){
         if(maxItemCount > 0 ) {
             this.maxItemCount = maxItemCount;
         } else{ throw new IllegalArgumentException("Max Item Count needs to be over zero"); }
     }
 
->>>>>>> Stashed changes
     public boolean removeItem(Item item) {
         return items.remove(item);
     }
