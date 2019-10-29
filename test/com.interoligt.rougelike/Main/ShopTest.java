@@ -11,15 +11,37 @@ class ShopTest {
     Item firstItem = new Item("Sword", 2,2);
     Item secondItem = new Item("Shield", 2,2);
     Item thirdItem = new Item("Stone", 2,2);
+    Item itemWithWorth100 = new Item("Sword", 2, 100);
+    ArrayList<Item> items = new ArrayList<>();
+    Inventory inventory = new Inventory(100, items);
+    Player player = new Player(100, 100, 100, inventory);
+    Shop shop = new Shop(1);
 
 
 
     @Test
+    void testPurchaseMoneyEqualsItemWorth() {
+        shop.setPlayer(player);
+        shop.addItem(itemWithWorth100);
+        player.addMoney(100);
+        shop.buyItem(itemWithWorth100);
+        assertEquals(0, player.getMoney());
+    }
+
+
+    @Test
+    void testPurchaseWhileItemIsNull(){
+        shop.setPlayer(player);
+        player.addMoney(100);
+        assertThrows(NullPointerException.class,
+                ()->{
+                   shop.buyItem(null);
+                });
+    }
+
+
+    @Test
     void testPurchaseWithoutRequieredMoneyAmount(){
-        ArrayList<Item> items = new ArrayList<>();
-        Inventory inventory = new Inventory(100, items);
-        Player player = new Player(100, 100, 100, inventory);
-        Shop shop = new Shop(1);
         shop.setPlayer(player);
         shop.addItem(firstItem);
         assertFalse(shop.buyItem(firstItem));
@@ -27,12 +49,8 @@ class ShopTest {
 
     @Test
     void testPurchaseWithRequieredMoneyAmount(){
-        ArrayList<Item> items = new ArrayList<>();
-        Inventory inventory = new Inventory(100, items);
-        Player player = new Player(100, 100, 100, inventory);
-        player.addMoney(100);
-        Shop shop = new Shop(1);
         shop.setPlayer(player);
+        player.addMoney(100);
         shop.addItem(firstItem);
         assertTrue(shop.buyItem(firstItem));
         assertEquals(98, player.getMoney());
@@ -51,7 +69,6 @@ class ShopTest {
 
     @Test
     void testExceedMaximumItemsWithArrayList(){
-        ArrayList<Item> items = new ArrayList<>();
         items.add(firstItem);
         items.add(secondItem);
         items.add(thirdItem);
