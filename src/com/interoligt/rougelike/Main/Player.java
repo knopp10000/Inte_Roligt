@@ -1,56 +1,39 @@
 package com.interoligt.rougelike.Main;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Player extends Target{
-
     int upgradePoints = 0;
     int money = 0;
     Inventory inventory;
+    int exp;
 
-    boolean alive = true;
-    ArrayList<Effect> effects = new ArrayList<Effect>();
     HashMap<Slot, Equippable> equipment = new HashMap<>();
 
-   //Create character
     public Player(int baseHP, int baseSpeed, int baseDamage, Inventory inventory){
-        if(baseHP > 0) {
-            this.baseHP = baseHP;
-            currentHP = baseHP;
-        }else{
-            throw new IllegalArgumentException("HP needs to be above 0");
-        }
-        if(baseSpeed > 0) {
-            this.baseSpeed = baseSpeed;
-        }else{
-            throw new IllegalArgumentException("Speed needs to be above 0");
-        }
-        if(baseDamage > 0) {
-            this.baseDamage = baseSpeed;
-        }else{
-            throw new IllegalArgumentException("Base damage needs to be above 0");
-        }
+        super(baseHP, baseSpeed, baseDamage);
         this.inventory = inventory;
-        level = 1;
     }
 
-    public int getBaseHP(){
-        return baseHP;
+    public void makeTurn(Monster[] monsters){
+        Monster target = chooseTarget(monsters);
     }
 
-    public int getSpeed(){
-        return baseSpeed;
+    private Monster chooseTarget(Monster[] monsters){
+        return monsters[0];
     }
 
-    public int getLevel(){
-        return level;
-    }
     public int getPoints(){
         return upgradePoints;
     }
     public int getMoney(){
         return money;
+    }
+    public void addMoney(int amount){
+        money += amount;
+    }
+    public void withdrawMoney(int amount){
+        money -= amount;
     }
 
     public void addMoney(int moneyToAdd){
@@ -92,26 +75,9 @@ public class Player extends Target{
 //        equipment.remove(slot);
 //    }
 
-    public void addEffect(Effect effect){
-        effects.add(effect);
-    }
-
-    public void removeEffect(Effect effect){
-        effects.remove(effect);
-    }
-
-    public void setHP(int health){
-        currentHP += health;
-
-        if(currentHP <= 0){
-            alive = false;
+        public void die(){
+            isAlive = false;
         }
-
-    }
-
-    public boolean isAlive(){
-        return alive;
-    }
 
 //    public void setSpeed(int speed){
 //        currentSpeed += speed;

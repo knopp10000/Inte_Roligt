@@ -8,12 +8,12 @@ class BasicMonsterTest {
     BasicMonster monster;
     @BeforeEach
     void setMonster(){
-        monster = new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 8, 4, 2);
+        monster = new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 4, 2);
     }
 
     @Test
     void isAliveTest(){
-        assertTrue(monster.isAlive());
+        assertTrue(monster.isAlive);
     }
 
     @Test
@@ -31,10 +31,10 @@ class BasicMonsterTest {
 
     @Test
     void setAliveTest(){
-        monster.setAlive(false);
-        assertFalse(monster.isAlive());
-        monster.setAlive(true);
-        assertTrue(monster.isAlive());
+        monster.isAlive = false;
+        assertFalse(monster.isAlive);
+        monster.isAlive = true;
+        assertTrue(monster.isAlive);
     }
 
     @Test
@@ -59,12 +59,7 @@ class BasicMonsterTest {
 
     @Test
     void getBaseHealthTest(){
-        assertEquals(monster.currentHP, 50);
-    }
-
-    @Test
-    void getBaseArmourTest(){
-        assertEquals(monster.currentHP,8);
+        assertEquals(monster.getCurrentHP(), 50);
     }
 
     @Test

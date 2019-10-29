@@ -1,21 +1,67 @@
 package com.interoligt.rougelike.Main;
 
-public class Target {
-    int baseHP;
-    int baseSpeed;
-    int baseDamage;
-    int currentHP;
-    int level;
-    String name;
+import java.util.ArrayList;
 
-    String getName(){
-        return name;
+abstract public class Target {
+    private int maxHP;
+    private int baseSpeed;
+    private int baseDamage;
+    private int currentHP;
+    private int currentSpeed;
+    private int currentDamage;
+    private int level;
+
+    boolean isAlive = true;
+    ArrayList<Effect> effects = new ArrayList<Effect>();
+
+  public Target(int maxHP, int baseSpeed, int baseDamage, int level){
+        if(maxHP > 0) {
+            this.maxHP = maxHP;
+            currentHP = maxHP;
+        }else{
+            throw new IllegalArgumentException("HP needs to be above 0");
+        }
+        if (baseDamage >= 0){
+            this.baseDamage = baseDamage;
+            currentDamage = baseDamage;
+        }else{
+            throw new IllegalArgumentException("BaseDamage needs to be above 0");
+        }
+        if(baseSpeed > 0){
+            this.baseSpeed = baseSpeed;
+            currentSpeed = baseSpeed;
+        }else{
+            throw new IllegalArgumentException("BaseSpeed needs to be above 0");
+        }
+        if(level >= 0){
+            this.level = level;
+        }else{
+            throw new IllegalArgumentException("Level needs to be above 0");
+        }
+    }
+
+    public Target(int maxHP, int baseSpeed, int baseDamage){
+        this(maxHP, baseSpeed, baseDamage, 1);
+    }
+
+    public void applyEffects(){
+        for(Effect e : effects){
+            e.applyEffect();
+        }
+    }
+
+    public void addEffect(Effect effect){
+        effects.add(effect);
+    }
+
+    public void removeEffect(Effect effect){
+        effects.remove(effect);
     }
     int getLevel(){
         return level;
     }
-    int getBaseHP(){
-        return baseHP;
+    int getMaxHP(){
+        return maxHP;
     };
     int getBaseDamage(){
         return baseDamage;
@@ -29,12 +75,52 @@ public class Target {
         return currentHP;
     }
 
+    void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
+    }
+
+    public void changeHealth(int health){
+        if(isAlive){
+           currentHP += health;
+           if (currentHP > maxHP){
+               currentHP = maxHP;
+           }
+           if(getCurrentHP() <= 0) {
+               currentHP = 0;
+               die();
+           }
+
+        }
+    }
+
+    public void changeSpeed(int speed){
+        currentSpeed += speed;
+        if (currentSpeed<0){
+            currentSpeed = 0;
+        }
+    }
+    public void changeDamage(int damage){
+        currentDamage += damage;
+        if(currentDamage<0){
+            currentDamage = 0;
+        }
+    }
+
     public int getCurrentDamage(){
-        return baseDamage;
+        return currentDamage;
     }
 
     int getSpeed(){
-        // ToDo: add speed effect to calc of speed when accessible
         return baseSpeed;
     }
+
+    String getName(){
+        return "Player";
+    }
+
+    int getCurrentSpeed(){
+        return currentSpeed;
+    }
+
+    abstract void die();
 }

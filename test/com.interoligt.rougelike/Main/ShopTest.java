@@ -11,11 +11,13 @@ class ShopTest {
     Item firstItem = new Item("Sword", 2,2);
     Item secondItem = new Item("Shield", 2,2);
     Item thirdItem = new Item("Stone", 2,2);
+
     Item itemWithWorth100 = new Item("Sword", 2, 100);
     ArrayList<Item> items = new ArrayList<>();
     Inventory inventory = new Inventory(100, items);
     Player player = new Player(100, 100, 100, inventory);
     Shop shop = new Shop(1);
+
 
 
 
