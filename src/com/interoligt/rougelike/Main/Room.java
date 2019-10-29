@@ -1,16 +1,15 @@
 package com.interoligt.rougelike.Main;
 
-import java.util.Collection;
-import java.util.List;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Room {
 
     private boolean activated = false;
-    private List<Monster> monsters;
+    private ArrayList<Monster> monsters;
 
     public Room(Monster... m) {
-        this.monsters = new List<Monster>(m);
+        this.monsters = new ArrayList<Monster>(Arrays.asList(m));
     }
 
     public void activate(){
@@ -25,8 +24,16 @@ public class Room {
         return activated;
     }
 
+    public boolean addMonsterToRoom(Monster monster){
+        return monsters.add(monster);
+    }
+
     public boolean removeMonsterFromRoom(Monster monster){
         return monsters.remove(monster);
+    }
+
+    public ArrayList<Monster> showAllMonsters(){
+        return new ArrayList<Monster>(monsters);
     }
 
 }
