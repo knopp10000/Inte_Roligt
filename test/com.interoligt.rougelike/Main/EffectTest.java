@@ -11,7 +11,7 @@ class EffectTest {
     private Target target;
     @BeforeEach
     void createTarget() {
-        target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 75, 10);
+        target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 10);
     }
 
     @Test
@@ -32,7 +32,7 @@ class EffectTest {
     @Test
     void effectConstructorContTest(){
         Effect health = new Effect(target,"Health Regen",'h', '+', true, 5, 5);
-        assertEquals(health.toString(),"Target: Bowser, Name: Health Regen, Stat: Health, Effect: Add 5 each turn, Duration: 5 turns");
+        assertEquals("Target: Bowser, Name: Health Regen, Stat: Health, Effect: Add 5 each turn, Duration: 5 turns", health.toString());
     }
 
     @Test
@@ -124,7 +124,7 @@ class EffectTest {
         Effect damage = new Effect(target,"Increase Damage", 'd', '+', false, 50);
         damage.applyEffect();
         damage.applyEffect();
-        assertEquals(target.getCurrentDamage(),125);
+        assertEquals(target.getCurrentDamage(),100);
     }
     @Test
     void getValueWithSignPosTest(){
@@ -193,9 +193,9 @@ class EffectTest {
     void removeDamageIncrease() {
         Effect damage = new Effect(target,"Increase Damage", 'd', '+', false, 15, 1);
         damage.applyEffect();
-        assertEquals(target.getCurrentDamage(), 90);
+        assertEquals(65,target.getCurrentDamage());
         damage.applyEffect();
-        assertEquals(target.getCurrentDamage(), 75);
+        assertEquals(50,target.getCurrentDamage());
     }
     @Test
     void removeSpeedIncrease() {

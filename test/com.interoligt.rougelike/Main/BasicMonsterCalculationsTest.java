@@ -6,12 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class BasicMonsterCalculationsTest {
-    BasicMonster monster = new BasicMonster("Bat", 25, 12,Element.GROUND,1500,25,5);
+    BasicMonster monster;
 
-//    @BeforeEach
-//    void setMonster(){
-//        monster = new BasicMonster("Bat", 25, 12,Element.GROUND,1500,25,5);
-//    }
+    @BeforeEach
+    void setMonster(){
+        monster = new BasicMonster("Bat", 25, 12,Element.GROUND,1500,25,5);
+    }
 
     @Test
     void getExperienceRewardTest(){

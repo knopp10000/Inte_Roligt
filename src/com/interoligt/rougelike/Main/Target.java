@@ -114,6 +114,10 @@ abstract public class Target {
         return baseSpeed;
     }
 
+    String getName(){
+        return "Player";
+    }
+
     int getCurrentSpeed(){
         return currentSpeed;
     }
