@@ -4,8 +4,9 @@ public class Item {
     String name;
     int weight;
     int worth;
+    Effect effect;
 
-    public Item(String name, int weight, int worth){
+    public Item(String name, int weight, int worth, Effect effect){
         if(!name.isBlank() && !name.isBlank()){
             this.name = name;
         }else{
@@ -21,6 +22,7 @@ public class Item {
         }else{
             throw new IllegalArgumentException("Item must have worth");
         }
+        this.effect = effect;
     }
 
     public String getName(){
@@ -33,5 +35,9 @@ public class Item {
 
     public int getWorth(){
         return worth;
+    }
+
+    public Effect getEffect(){
+        return effect;
     }
 }

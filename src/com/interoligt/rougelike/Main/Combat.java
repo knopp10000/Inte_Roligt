@@ -60,13 +60,13 @@ public class Combat {
         return enemies;
     }
 
-    public boolean runTurn(){
-        while(player.isAlive && enemiesAreAlive()) {
+    public void runTurn(){
+
             for (Target t : getTurnOrder()) {
                 if (t instanceof Player) {
                     Player p = (Player)t;
                     p.applyEffects();
-                    p.makeTurn(enemies);
+                    p.makeTurn();
                 }
                 if (t instanceof BasicMonster) {
                     Monster m = (Monster)t;
@@ -74,7 +74,12 @@ public class Combat {
                     m.makeTurn(player);
                 }
             }
-        }
+            if(!combatFinished()){
+                runTurn();
+            }
+    }
+
+    public boolean combatFinished(){
         if(!enemiesAreAlive()){
             return true;
         }

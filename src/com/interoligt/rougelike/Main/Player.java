@@ -6,6 +6,9 @@ public class Player extends Target{
     int upgradePoints = 0;
     int money = 0;
     Inventory inventory;
+    Target target;
+    Move move;
+    Item chosenItem;
     int exp;
 
     HashMap<Slot, Equippable> equipment = new HashMap<>();
@@ -28,12 +31,6 @@ public class Player extends Target{
     }
     public int getMoney(){
         return money;
-    }
-    public void addMoney(int amount){
-        money += amount;
-    }
-    public void withdrawMoney(int amount){
-        money -= amount;
     }
 
     public void addMoney(int moneyToAdd){
@@ -92,4 +89,59 @@ public class Player extends Target{
 //            currentDamage = 0;
 //        }
 //    }
+
+    public void makeTurn(){
+
+        synchronized(this) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        chooseTarget(target);
+
+        if(getMove() == Move.ITEM){
+            synchronized(this){
+                try{
+                    this.wait();
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            target.addEffect(chosenItem.getEffect());
+        }
+
+        applyMove(target, move);
+
+    }
+
+    private void chooseTarget(Target target){
+        this.target = target;
+    }
+
+    private void applyMove(Target target, Move move){
+        switch(move){
+            case ATTACK:
+                target.changeHealth(getCurrentDamage());
+                break;
+
+            case ITEM:
+
+        }
+    }
+
+    public void setTarget(Target target){
+        this.target = target;
+    }
+
+    public void setMove(Move move){
+        this.move = move;
+    }
+
+    public Move getMove(){
+        return move;
+    }
+
 }

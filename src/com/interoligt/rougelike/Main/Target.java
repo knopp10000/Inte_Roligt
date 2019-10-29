@@ -51,7 +51,9 @@ abstract public class Target {
     }
 
     public void addEffect(Effect effect){
-        effects.add(effect);
+      if(effect != null) {
+          effects.add(effect);
+      }
     }
 
     public void removeEffect(Effect effect){

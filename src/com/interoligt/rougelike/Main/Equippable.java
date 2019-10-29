@@ -4,8 +4,8 @@ public class Equippable extends Item {
 
     Slot slot;
 
-    public Equippable(String n, int we, int wo, Slot slot){
-        super(n, we, wo);
+    public Equippable(String n, int we, int wo, Effect ef, Slot slot){
+        super(n, we, wo, ef);
         this.slot = slot;
     }
 

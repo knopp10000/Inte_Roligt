@@ -1,4 +1,4 @@
-/*
+
 package com.interoligt.rougelike.Main;
 
 import org.junit.jupiter.api.Test;
@@ -33,5 +33,22 @@ class CombatTest {
 //        assertTrue(turnOrder[0].getSpeed() >= turnOrder[1].getSpeed());
         assertTrue(Arrays.equals(turnOrder, expectedTurnorder));
     }
+
+    //Test combat executes
+    @Test
+    void testCombatExecution(){
+        validCombat.runTurn();
+
+        while(!validCombat.combatFinished()) {
+            synchronized (this) {
+                validCombat.getPlayer().setTarget(spider);
+                validCombat.getPlayer().setMove(Move.ATTACK);
+                notify();
+            }
+        }
+        assertTrue(validCombat.combatFinished());
+
+    }
+
 }
-*/
+
