@@ -159,10 +159,12 @@ class EffectTest {
 
     }
     @Test
-    void applyEffectSpeedDecreaseWithDurationTest(){
-        Effect damage = new Effect(target,"Decrease health", 'h', '-', false, 1000);
+    void applyEffectHealthIncreaseWithDurationTest(){
+        Effect damage = new Effect(target,"Decrease health",
+                'h', '-', false, 1000);
         damage.applyEffect();
-        Effect health = new Effect(target, "Health boost", 'h','+',false,500,2);
+        Effect health = new Effect(target, "Health boost",
+                'h','+',false,500,2);
         health.applyEffect();
         health.applyEffect();
         assertEquals(target.getCurrentHP(), 6500);
