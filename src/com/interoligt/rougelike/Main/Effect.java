@@ -192,7 +192,7 @@ public class Effect {
         }
     @Override
     public String toString(){
-        String str = "Target: " + target.getName() + ", Name: " + name + ", Stat: " + getStatusName() + ", Effect: " + getEffectType() + " " + value;
+        String str = "Name: " + name + ", Stat: " + getStatusName() + ", Effect: " + getEffectType() + " " + value;
         if(isContinuous){
             str += " each turn";
         }

@@ -9,11 +9,14 @@
         </condition>
     </fail>-->
 
+    <property name="classpath" value="${basedir}/lib"/>
+
     <path id="test.classpath">
         <pathelement path="build/test"/>
         <pathelement path="build/main"/>
-        <fileset dir="${ant.home}/lib" includes="*.jar" />
+<!--        <fileset dir="${ant.home}/lib" includes="*.jar" />-->
         <fileset dir="lib" includes="**/*.jar"/>
+        <fileset dir="${basedir}/lib"/>
     </path>
 
     <target name="build" description="clean build" depends="clean, test" />

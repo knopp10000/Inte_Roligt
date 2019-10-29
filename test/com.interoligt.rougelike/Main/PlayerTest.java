@@ -13,7 +13,7 @@ class PlayerTest {
     //Test HP when creating player
     @Test
     void testBaseHP(){
-        int baseHP = validPlayer.getBaseHP();
+        int baseHP = validPlayer.getMaxHP();
         assertTrue(baseHP > 0);
     }
     //Test Speed when creating player

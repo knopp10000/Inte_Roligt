@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class EffectTest {
 
     private Target target;
@@ -12,8 +13,6 @@ class EffectTest {
     void createTarget() {
         target = new BasicMonster("Bowser", 50, 15000, Element.GROUND, 7000, 50, 75, 10);
     }
-
-
 
     @Test
     void effectConstructorTest(){
@@ -57,6 +56,7 @@ class EffectTest {
     void effectConstructorBlankNameTest(){
         assertThrows(NullPointerException.class, () -> {new Effect(target,"    ",'h','+',true,5,0);});
     }
+
 
     @Test
     void effectHasDurationTrueTest(){
