@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapTest {
-    Monster anka = new BasicMonster("Anka", 3, 1, Element.FIRE, 4, 2, 1, 200);
+    Monster anka = new BasicMonster("Anka", 3, 1, Element.FIRE, 4, 2, 1);
     Room room00 = new Room(anka);
     Room room01 = new Room(anka);
     Room room02 = new Room(anka);
