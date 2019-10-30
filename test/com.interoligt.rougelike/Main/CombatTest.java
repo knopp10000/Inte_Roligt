@@ -2,7 +2,6 @@
 package com.interoligt.rougelike.Main;
 
 import com.interoligt.rougelike.Mocks.UIPlayerMoveMock;
-import com.interoligt.rougelike.UI.UIPlayerMove;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,7 +52,13 @@ class CombatTest {
     //Test using item in combat
     @Test
     void testItemInCombat(){
-        player.getInventory().addItem(new Item("Grenade", 1, 1, new Effect("Flat damage", 'h', '-', false, 5));
+        Effect effect =  new Effect("Flat damage", 'h', '-', false, 5);
+        Item grenade = new Item("Grenade", 1, 1,effect);
+        try{
+            player.getInventory().addItem(grenade);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

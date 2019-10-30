@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShopTest {
 
-    Item firstItem = new Item("Sword", 2,2, null);
-    Item secondItem = new Item("Shield", 2,2, null);
-    Item thirdItem = new Item("Stone", 2,2, null);
+    Item firstItem = new Item("Sword", 2,2);
+    Item secondItem = new Item("Shield", 2,2);
+    Item thirdItem = new Item("Stone", 2,2);
 
     Item itemWithWorth100 = new Item("Sword", 2, 100);
     ArrayList<Item> items = new ArrayList<>();

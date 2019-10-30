@@ -56,6 +56,14 @@ public class Player extends Target{
 //        }
 //        equipment.remove(slot);
 //    }
+    public void withdrawMoney(int amount){
+        money -= amount;
+    }
+
+    public void addMoney(int amount){
+        money += amount;
+    }
+
     //CHANGES ALIVE VARIABLE FOR PLAYER
         public void die(){
             isAlive = false;
