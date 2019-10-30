@@ -5,10 +5,10 @@ public abstract class Monster extends Target{
     private Element element;
     private String name;
 
-    Monster(String name, int level, Element element, int baseHealth, int baseDamage, int baseSpeed) throws IllegalArgumentException, IllegalArgumentException{
+    Monster(String name, int level, Element element, int baseHealth, int baseDamage, int baseSpeed) throws IllegalArgumentException{
         super(baseHealth, baseSpeed, baseDamage, level);
         if(name == null || name.isBlank()) {
-            throw new IllegalArgumentException("name cant be null nor empty");
+            throw new IllegalArgumentException("name can't be null nor empty");
         }
         else if(element == null){
             throw new IllegalArgumentException("element can't be null");
@@ -34,7 +34,7 @@ public abstract class Monster extends Target{
     void setActive(boolean bool){
         active = bool;
     }
-
+    
     @Override
     public String toString(){
         return "Name: " + name + ", Level: " + getLevel() + ", Element: " + element.toString().substring(0,1) + element.toString().substring(1).toLowerCase();

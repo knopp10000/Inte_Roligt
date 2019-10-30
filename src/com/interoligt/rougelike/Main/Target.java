@@ -2,7 +2,7 @@ package com.interoligt.rougelike.Main;
 
 import java.util.ArrayList;
 
-abstract public class Target {
+abstract public class Target{
     private int maxHP;
     private int baseSpeed;
     private int baseDamage;
@@ -127,6 +127,10 @@ abstract public class Target {
 
     int getSpeed(){
         return baseSpeed;
+    }
+
+    String getName(){
+        return "Player";
     }
 
     int getCurrentSpeed(){
