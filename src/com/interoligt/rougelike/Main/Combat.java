@@ -4,6 +4,9 @@ public class Combat {
     private Monster[] enemies;
     private Player player;
     private Target[] turnOrder;
+    private int turnCounter = 0;
+    private Move chosenMove;
+    private Target chosenTarget;
 
     public Combat(Monster[] enemies, Player player){
         if (player != null){
@@ -20,6 +23,7 @@ public class Combat {
         setTurnOrder();
     }
 
+    //DETERMINES TURN ORDER
     private void setTurnOrder(){
 //        for(int i = 0; i < enemies.length; i++){
 //            turnOrder[i] = enemies[i];
@@ -44,6 +48,7 @@ public class Combat {
         return turnOrder;
     }
 
+    //CHECKS IF ANY ENEMIES ARE ALIVE
     private boolean enemiesAreAlive(){
         for(Monster m : enemies){
             if(m.isAlive){
@@ -60,32 +65,53 @@ public class Combat {
         return enemies;
     }
 
-    public void runTurn(){
+    private Target getNextTurn(){
+        int currentTurn = turnCounter;
 
-            for (Target t : getTurnOrder()) {
-                if (t instanceof Player) {
-                    Player p = (Player)t;
-                    p.applyEffects();
-                    p.makeTurn();
-                }
-                if (t instanceof BasicMonster) {
-                    Monster m = (Monster)t;
-                    m.applyEffects();
-                    m.makeTurn(player);
-                }
-            }
-            if(!combatFinished()){
-                runTurn();
-            }
+        if(turnCounter == turnOrder.length-1){
+            turnCounter = 0;
+        }else{
+            turnCounter++;
+        }
+        return turnOrder[currentTurn];
     }
+
+    //RUNS TURN FOR NEXT ACTOR
+    public void runTurn(){
+        Target next = getNextTurn();
+        if(next.isAlive) {
+            next.applyEffects();
+            if (next instanceof Player) {
+                player.applyMove(chosenTarget, chosenMove);
+                System.out.println(chosenTarget.getCurrentHP());
+            } else if (next instanceof Monster) {
+                next.attack(player);
+                System.out.println(player.getCurrentHP());
+            }
+        }
+        }
+
+
+        //RECEIVES NEXT MOVE AND TARGET REQUESTED BY USER TO USE FOR NEXT PLAYER ROUND
+    public void setChosenMove(Move chosenMove){
+        this.chosenMove = chosenMove;
+    }
+
+    public void setChosenTarget(Target chosenTarget){
+        this.chosenTarget = chosenTarget;
+    }
+
+
+//CHECKS IF PLAYER IS ALIVE AND IF ENEMIES ARE ALIVE TO DETERMINE IF COMBAT IS OVER
 
     public boolean combatFinished(){
         if(!enemiesAreAlive()){
             return true;
         }
-        else{
-            return false;
+        else if(!player.isAlive){
+            return true;
         }
+        return false;
     }
 
 }

@@ -35,11 +35,6 @@ abstract class Monster extends Target{
         active = bool;
     }
 
-    public void makeTurn(Player player){
-        player.changeHealth(getCurrentDamage());
-
-    }
-
     @Override
     public String toString(){
         return "Name: " + name + ", Level: " + getLevel() + ", Element: " + element.toString().substring(0,1) + element.toString().substring(1).toLowerCase();

@@ -34,19 +34,17 @@ class CombatTest {
         assertTrue(Arrays.equals(turnOrder, expectedTurnorder));
     }
 
-    //Test combat executes
+    //Test that combat executes and finishes
     @Test
     void testCombatExecution(){
-        validCombat.runTurn();
 
         while(!validCombat.combatFinished()) {
-            synchronized (this) {
-                validCombat.getPlayer().setTarget(spider);
-                validCombat.getPlayer().setMove(Move.ATTACK);
-                notify();
+                validCombat.setChosenTarget(spider);
+                validCombat.setChosenMove(Move.ATTACK);
+                validCombat.runTurn();
             }
-        }
-        assertTrue(validCombat.combatFinished());
+
+        assertFalse(validCombat.getPlayer().isAlive);
 
     }
 

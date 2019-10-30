@@ -77,9 +77,7 @@ abstract public class Target {
         return currentHP;
     }
 
-    void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
-    }
+    //MANIPULATES TARGETS CURRENT HEALTH
 
     public void changeHealth(int health){
         if(isAlive){
@@ -93,6 +91,12 @@ abstract public class Target {
            }
 
         }
+    }
+
+    //ADDS NEGATIVE OF CURRENT DAMAGE TO TARGETS HEALTH
+
+    public void attack(Target target){
+        target.changeHealth(-(getCurrentDamage()));
     }
 
     public void changeSpeed(int speed){

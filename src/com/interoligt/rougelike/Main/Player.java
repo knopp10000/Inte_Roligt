@@ -6,8 +6,6 @@ public class Player extends Target{
     int upgradePoints = 0;
     int money = 0;
     Inventory inventory;
-    Target target;
-    Move move;
     Item chosenItem;
     int exp;
 
@@ -18,17 +16,12 @@ public class Player extends Target{
         this.inventory = inventory;
     }
 
-    public void makeTurn(Monster[] monsters){
-        Monster target = chooseTarget(monsters);
-    }
-
-    private Monster chooseTarget(Monster[] monsters){
-        return monsters[0];
-    }
-
     public int getPoints(){
         return upgradePoints;
     }
+
+    //METHODS FOR MANIPULATING MONEY;
+
     public int getMoney(){
         return money;
     }
@@ -71,7 +64,7 @@ public class Player extends Target{
 //        }
 //        equipment.remove(slot);
 //    }
-
+    //CHANGES ALIVE VARIABLE FOR PLAYER
         public void die(){
             isAlive = false;
         }
@@ -90,58 +83,21 @@ public class Player extends Target{
 //        }
 //    }
 
-    public void makeTurn(){
 
-        synchronized(this) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        chooseTarget(target);
-
-        if(getMove() == Move.ITEM){
-            synchronized(this){
-                try{
-                    this.wait();
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-            target.addEffect(chosenItem.getEffect());
-        }
-
-        applyMove(target, move);
-
-    }
-
-    private void chooseTarget(Target target){
-        this.target = target;
-    }
-
-    private void applyMove(Target target, Move move){
+    //APPLIES ARGUMENT MOVE TO ARGUMENT TARGET
+    public void applyMove(Target chosenTarget, Move move){
         switch(move){
             case ATTACK:
-                target.changeHealth(getCurrentDamage());
+                attack(chosenTarget);
                 break;
 
             case ITEM:
+                chosenTarget.addEffect(chosenItem.getEffect());
+                break;
+
+            default:
+                break;
 
         }
     }
-
-    public void setTarget(Target target){
-        this.target = target;
-    }
-
-    public void setMove(Move move){
-        this.move = move;
-    }
-
-    public Move getMove(){
-        return move;
-    }
-
 }
