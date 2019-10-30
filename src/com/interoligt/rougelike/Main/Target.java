@@ -12,9 +12,11 @@ abstract public class Target{
     private int level;
 
     boolean isAlive = true;
-    ArrayList<Effect> effects = new ArrayList<Effect>();
+    ArrayList<Effect> effects = new ArrayList<>();
+    ArrayList<Effect> effectsNotActivedThisTurn = new ArrayList<>();
 
-  public Target(int maxHP, int baseSpeed, int baseDamage, int level){
+
+    public Target(int maxHP, int baseSpeed, int baseDamage, int level){
         if(maxHP > 0) {
             this.maxHP = maxHP;
             currentHP = maxHP;
@@ -45,17 +47,26 @@ abstract public class Target{
     }
 
     public void applyEffects(){
-        for(Effect e : effects){
+        for(Effect e : effectsNotActivedThisTurn){
             e.applyEffect();
+            effectsNotActivedThisTurn.remove(e);
         }
     }
 
+    public void newTurnForEffects(){
+        effectsNotActivedThisTurn.addAll(effects);
+    }
+
     public void addEffect(Effect effect){
-        effects.add(effect);
+      if(effect != null) {
+          effects.add(effect);
+          effectsNotActivedThisTurn.add(effect);
+      }
     }
 
     public void removeEffect(Effect effect){
         effects.remove(effect);
+        effectsNotActivedThisTurn.remove(effect);
     }
     int getLevel(){
         return level;
@@ -75,9 +86,7 @@ abstract public class Target{
         return currentHP;
     }
 
-    void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
-    }
+    //MANIPULATES TARGETS CURRENT HEALTH
 
     public void changeHealth(int health){
         if(isAlive){
@@ -91,6 +100,12 @@ abstract public class Target{
            }
 
         }
+    }
+
+    //ADDS NEGATIVE OF CURRENT DAMAGE TO TARGETS HEALTH
+
+    public void attack(Target target){
+        target.changeHealth(-(getCurrentDamage()));
     }
 
     public void changeSpeed(int speed){

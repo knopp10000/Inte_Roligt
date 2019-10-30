@@ -1,11 +1,18 @@
 package com.interoligt.rougelike.Main;
 
+import com.interoligt.rougelike.Mocks.UIPlayerMoveMock;
+import com.interoligt.rougelike.UI.UIPlayerMove;
+
 public class Combat {
     private Monster[] enemies;
     private Player player;
     private Target[] turnOrder;
+    private int turnCounter = 0;
+    private Move chosenMove;
+    private Target chosenTarget;
+    private UIPlayerMove uiPlayerMove;
 
-    public Combat(Monster[] enemies, Player player){
+    public Combat(Monster[] enemies, Player player, UIPlayerMove uiPlayerMove){
         if (player != null){
             this.player = player;
         }else{
@@ -16,10 +23,12 @@ public class Combat {
         }else {
             throw new IllegalArgumentException("enemies cant be null");
         }
+        this.uiPlayerMove = uiPlayerMove;
         this.turnOrder = new Target[enemies.length+1];
         setTurnOrder();
     }
 
+    //DETERMINES TURN ORDER
     private void setTurnOrder(){
 //        for(int i = 0; i < enemies.length; i++){
 //            turnOrder[i] = enemies[i];
@@ -44,6 +53,7 @@ public class Combat {
         return turnOrder;
     }
 
+    //CHECKS IF ANY ENEMIES ARE ALIVE
     private boolean enemiesAreAlive(){
         for(Monster m : enemies){
             if(m.isAlive){
@@ -60,27 +70,55 @@ public class Combat {
         return enemies;
     }
 
-    public boolean runTurn(){
-        while(player.isAlive && enemiesAreAlive()) {
-            for (Target t : getTurnOrder()) {
-                if (t instanceof Player) {
-                    Player p = (Player)t;
-                    p.applyEffects();
-                    p.makeTurn(enemies);
-                }
-                if (t instanceof BasicMonster) {
-                    Monster m = (Monster)t;
-                    m.applyEffects();
-                    m.makeTurn(player);
-                }
-            }
+    private Target getNextTargetWhoseTurnItIs(){
+        int currentTurn = turnCounter;
+
+        if(turnCounter == turnOrder.length-1){
+            turnCounter = 0;
+        }else{
+            turnCounter++;
         }
+        return turnOrder[currentTurn];
+    }
+
+    //RUNS TURN FOR NEXT ACTOR
+    public void runTurn(){
+        Target activeTarget = getNextTargetWhoseTurnItIs();
+        activeTarget.newTurnForEffects();
+        if(activeTarget.isAlive) {
+            activeTarget.applyEffects();
+            if (activeTarget instanceof Player) {
+                Move move = uiPlayerMove.chooseMove();
+                Target target = uiPlayerMove.chooseTarget(enemies);
+                player.applyMove(target, move);
+            } else if (activeTarget instanceof Monster) {
+                activeTarget.attack(player);
+            }
+            activeTarget.applyEffects();
+        }
+    }
+
+
+    //RECEIVES NEXT MOVE AND TARGET REQUESTED BY USER TO USE FOR NEXT PLAYER ROUND
+    public void setChosenMove(Move chosenMove){
+        this.chosenMove = chosenMove;
+    }
+
+    public void setChosenTarget(Target chosenTarget){
+        this.chosenTarget = chosenTarget;
+    }
+
+
+//CHECKS IF PLAYER IS ALIVE AND IF ENEMIES ARE ALIVE TO DETERMINE IF COMBAT IS OVER
+
+    public boolean isCombatFinished(){
         if(!enemiesAreAlive()){
             return true;
         }
-        else{
-            return false;
+        else if(!player.isAlive){
+            return true;
         }
+        return false;
     }
 
 }

@@ -6,6 +6,7 @@ public class Player extends Target{
     int upgradePoints = 0;
     int money = 0;
     Inventory inventory;
+    Item chosenItem;
     int exp;
 
     HashMap<Slot, Equippable> equipment = new HashMap<>();
@@ -15,25 +16,14 @@ public class Player extends Target{
         this.inventory = inventory;
     }
 
-    public void makeTurn(Monster[] monsters){
-        Monster target = chooseTarget(monsters);
-    }
-
-    private Monster chooseTarget(Monster[] monsters){
-        return monsters[0];
-    }
-
-    public int getPoints(){
+    /*public int getPoints(){
         return upgradePoints;
-    }
+    }*/
+
+    //METHODS FOR MANIPULATING MONEY;
+
     public int getMoney(){
         return money;
-    }
-    public void addMoney(int amount){
-        money += amount;
-    }
-    public void withdrawMoney(int amount){
-        money -= amount;
     }
 
    public Inventory getInventory(){
@@ -66,7 +56,7 @@ public class Player extends Target{
 //        }
 //        equipment.remove(slot);
 //    }
-
+    //CHANGES ALIVE VARIABLE FOR PLAYER
         public void die(){
             isAlive = false;
         }
@@ -84,4 +74,20 @@ public class Player extends Target{
 //            currentDamage = 0;
 //        }
 //    }
+
+
+    //APPLIES ARGUMENT MOVE TO ARGUMENT TARGET
+    public void applyMove(Target chosenTarget, Move move){
+        switch(move){
+            case ATTACK:
+                attack(chosenTarget);
+                break;
+            case ITEM:
+                chosenTarget.addEffect(chosenItem.getEffect());
+                break;
+            default:
+                break;
+
+        }
+    }
 }

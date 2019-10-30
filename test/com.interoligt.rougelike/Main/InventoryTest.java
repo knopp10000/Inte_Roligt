@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class InventoryTest {
 
-    Item gun = new Item("gun", 5, 20);
-    Item sword = new Item("sword", 50, 30);
-    Item boots = new Item("Boots", 15, 15);
+    Item gun = new Item("gun", 5, 20, null);
+    Item sword = new Item("sword", 50, 30, null);
+    Item boots = new Item("Boots", 15, 15, null);
     ArrayList<Item> items = new ArrayList<Item>(Arrays.asList(gun, sword, boots));
 
     Inventory inventoryToTest = new Inventory( 3, items);
@@ -37,14 +37,14 @@ public class InventoryTest {
     // Test to add too many items to inventory
     @Test
     void testToManyItems(){
-        Item hat = new Item("hat", 5, 20);
+        Item hat = new Item("hat", 5, 20, null);
         assertThrows(Exception.class, () -> inventoryToTest.addItem(hat));
     }
     //Test to add new item to existing inventory
     @Test
     void testAddItem() throws Exception {
         Inventory inventory = new Inventory( 5, items);
-        Item hat = new Item("hat", 5, 20);
+        Item hat = new Item("hat", 5, 20, null);
         inventory.addItem(hat);
         assertTrue(inventory.getItemCount() == 4);
     }
@@ -69,7 +69,7 @@ public class InventoryTest {
     //Test to remove non existing item
     @Test
     void testRemoveNonExistingItem(){
-        Item phone = new Item("phone", 5, 20);
+        Item phone = new Item("phone", 5, 20, null);
         assertFalse(inventoryToTest.removeItem(phone));
     }
 }
