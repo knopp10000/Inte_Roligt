@@ -13,10 +13,9 @@ public class Effect {
     private char stat, operator;
 
 
-    Effect(Target target, String name, char stat, char operator, boolean isContinuous, int value, int duration) throws IllegalArgumentException {
-        this(target, name, stat,operator,isContinuous,value);
+    Effect(String name, char stat, char operator, boolean isContinuous, int value, int duration) throws IllegalArgumentException {
+        this(name, stat,operator,isContinuous,value);
         if(duration<=0){
-            target.removeEffect(this);
             throw new IllegalArgumentException("If duration is added to constructor, the value has to be larger than 0");
         }
         this.duration = duration;
@@ -24,21 +23,20 @@ public class Effect {
         hasDuration = true;
     }
 
-    Effect (Target target, String name, char stat, char operator, boolean isContinuous, int value) throws IllegalArgumentException,NullPointerException{
-        if(target == null || name == null || name.isBlank()){
-            throw new NullPointerException("Target and name cannot be null or blank");
+    Effect (String name, char stat, char operator, boolean isContinuous, int value) throws IllegalArgumentException,NullPointerException{
+        if(name == null || name.isBlank()){
+            throw new NullPointerException("Name cannot be null or blank");
         }
         else if(!(stat=='d'||stat=='h'||stat=='s')||!(operator=='+'||operator=='-')||value<=0){
             throw new IllegalArgumentException("Stat has to be d (damage), h (health) or s (speed), operator has to be + or -, and value has to be a positive integer");
         }
-        this.target = target;
+
         this.name = name;
         this.stat = stat;
         this.operator = operator;
         this.isContinuous = isContinuous;
         this.value = value;
         this.isActive = true;
-        target.addEffect(this);
 
     }
 
@@ -49,6 +47,12 @@ public class Effect {
         return isContinuous;
     }
 
+    void setTarget(Target target){
+        if(this.target == null) {
+            this.target = target;
+            target.addEffect(this);
+        }
+    }
     int getDuration(){
         if(hasDuration) {
             return duration;
@@ -60,7 +64,6 @@ public class Effect {
     double getValue(){
         return value;
     }
-
 
     int getValueWithSign(){
         if(operator=='-'){
@@ -97,7 +100,7 @@ public class Effect {
         }
 
     }
-    public void applyContinuousDurationEffect(){
+    private void applyContinuousDurationEffect(){
         if(counter > 0){
             applyEffectSwitch();
         }
@@ -106,7 +109,7 @@ public class Effect {
         }
         --counter;
     }
-    public void applyDurationEffect(){
+    private void applyDurationEffect(){
         if(counter > 0){
             applySingleEffect();
         }
@@ -117,11 +120,11 @@ public class Effect {
 
 
     }
-    public void applyContinuousEffect(){
+    private void applyContinuousEffect(){
         applyEffectSwitch();
     }
 
-    public void applySingleEffect(){
+   private void applySingleEffect(){
         if(!hasBeenApplied) {
             applyEffectSwitch();
         }
@@ -192,7 +195,7 @@ public class Effect {
         }
     @Override
     public String toString(){
-        String str = "Target: " + target.getName() + ", Name: " + name + ", Stat: " + getStatusName() + ", Effect: " + getEffectType() + " " + value;
+        String str = "Name: " + name + ", Stat: " + getStatusName() + ", Effect: " + getEffectType() + " " + value;
         if(isContinuous){
             str += " each turn";
         }
