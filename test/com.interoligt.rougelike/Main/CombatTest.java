@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CombatTest {
     Player player = new Player(1,12, 2, new Inventory(10));
     Monster spider = new BasicMonster("Spider", 5, 5, Element.FIRE, 10, 2, 2);
-    Monster[] monsters = {spider};
+    Monster pyttiPanna = new BasicMonster("Pytti-Panna", 2, 5, Element.WATER, 700, 300, 10);
+    Monster[] monsters = {spider, pyttiPanna};
     Combat validCombat = new Combat(monsters, player, new UIPlayerMoveMock());
 
     //Check that fetched player is not null
@@ -28,12 +29,12 @@ class CombatTest {
     @Test
     void checkTurnOrder(){
         Target[] turnOrder = validCombat.getTurnOrder();
-        Target[] expectedTurnorder = {player, spider};
+        Target[] expectedTurnorder = {player, pyttiPanna, spider};
         assertTrue(Arrays.equals(turnOrder, expectedTurnorder));
     }
 
     @Test
-    void testCombatExecution(){
+    void testCombatWherePlayerDies(){
         validCombat.start();
         assertFalse(validCombat.getPlayer().isAlive);
     }
