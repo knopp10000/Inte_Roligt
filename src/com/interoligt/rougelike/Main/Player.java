@@ -15,7 +15,7 @@ public class Player extends Target{
         super(baseHP, baseSpeed, baseDamage);
         this.inventory = inventory;
     }
-
+    
     /*public int getPoints(){
         return upgradePoints;
     }*/
@@ -84,6 +84,7 @@ public class Player extends Target{
 //    }
 
 
+
     //APPLIES ARGUMENT MOVE TO ARGUMENT TARGET
     public void applyMove(Target chosenTarget, Move move){
         switch(move){
@@ -91,11 +92,21 @@ public class Player extends Target{
                 attack(chosenTarget);
                 break;
             case ITEM:
-                chosenTarget.addEffect(chosenItem.getEffect());
+                useItem(chosenTarget);
                 break;
             default:
                 break;
+        }
+    }
 
+    private void useItem(Target chosenTarget) {
+        if (chosenItem != null){
+            Effect effect = chosenItem.getEffect();
+            if (effect != null){
+                chosenTarget.addEffect(effect);
+                inventory.removeItem(chosenItem);
+                chosenItem = null;
+            }
         }
     }
 }

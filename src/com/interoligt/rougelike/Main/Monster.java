@@ -29,6 +29,8 @@ public abstract class Monster extends Target{
         return active;
     }
 
+    abstract Move chooseMove();
+
     abstract int getExperienceReward();
 
     void setActive(boolean bool){

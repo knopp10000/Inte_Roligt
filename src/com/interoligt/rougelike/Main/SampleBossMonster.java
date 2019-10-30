@@ -15,4 +15,9 @@ public class SampleBossMonster extends BossMonster {
     void die() {
 
     }
+
+    @Override
+    Move chooseMove() {
+        return Move.ATTACK;
+    }
 }
