@@ -1,6 +1,6 @@
 package com.interoligt.rougelike.Main;
 
-abstract class Monster extends Target{
+public abstract class Monster extends Target{
     private boolean active = true;
     private Element element;
     private String name;

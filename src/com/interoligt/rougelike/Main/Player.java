@@ -90,11 +90,9 @@ public class Player extends Target{
             case ATTACK:
                 attack(chosenTarget);
                 break;
-
             case ITEM:
                 chosenTarget.addEffect(chosenItem.getEffect());
                 break;
-
             default:
                 break;
 

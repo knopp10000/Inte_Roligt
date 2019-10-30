@@ -1,6 +1,8 @@
 
 package com.interoligt.rougelike.Main;
 
+import com.interoligt.rougelike.Mocks.UIPlayerMoveMock;
+import com.interoligt.rougelike.UI.UIPlayerMove;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +11,7 @@ class CombatTest {
     Player player = new Player(1,12, 2, new Inventory(10));
     Monster spider = new BasicMonster("Spider", 5, 5, Element.FIRE, 10, 2, 2);
     Monster[] monsters = {spider};
-    Combat validCombat = new Combat(monsters, player);
+    Combat validCombat = new Combat(monsters, player, new UIPlayerMoveMock());
 
     //Check that fetched player is not null
     @Test
@@ -38,7 +40,7 @@ class CombatTest {
     @Test
     void testCombatExecution(){
 
-        while(!validCombat.combatFinished()) {
+        while(!validCombat.isCombatFinished()) {
                 validCombat.setChosenTarget(spider);
                 validCombat.setChosenMove(Move.ATTACK);
                 validCombat.runTurn();
