@@ -9,8 +9,6 @@ public class Player extends Target{
     Item chosenItem;
     int exp;
 
-    HashMap<Slot, Equippable> equipment = new HashMap<>();
-
     public Player(int baseHP, int baseSpeed, int baseDamage, Inventory inventory){
         super(baseHP, baseSpeed, baseDamage);
         this.inventory = inventory;
@@ -31,9 +29,6 @@ public class Player extends Target{
     }
 
 
-    public HashMap<Slot, Equippable> getEquipment() {
-        return equipment;
-    }
 
 //    public void equipItem(Equippable newEquipment){
 //        for(i = 0; i < inventory.length; i++){
