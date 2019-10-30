@@ -48,5 +48,14 @@ class CombatTest {
 
     }
 
+    //Test using item in combat
+    @Test
+    void testItemInCombat(){
+        player.getInventory().addItem(new Item("Grenade", 1, 1, new Effect("Flat damage", 'h', '-', false, 5));
+    }
+
+
+
+
 }
 

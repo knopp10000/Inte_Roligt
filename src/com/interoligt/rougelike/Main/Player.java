@@ -16,9 +16,9 @@ public class Player extends Target{
         this.inventory = inventory;
     }
 
-    public int getPoints(){
+    /*public int getPoints(){
         return upgradePoints;
-    }
+    }*/
 
     //METHODS FOR MANIPULATING MONEY;
 
