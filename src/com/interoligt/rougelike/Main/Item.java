@@ -25,6 +25,10 @@ public class Item {
         this.effect = effect;
     }
 
+    public Item(String name, int weight, int worth) {
+        this(name, weight, worth, null);
+    }
+
     public String getName(){
         return name;
     }
