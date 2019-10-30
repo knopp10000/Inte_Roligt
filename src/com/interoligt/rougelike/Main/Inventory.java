@@ -37,7 +37,11 @@ public class Inventory {
        }
     }
 
-     public int getWeight(){
+    public ArrayList<Item> getItemsCopy() {
+        return new ArrayList<Item>(items);
+    }
+
+    public int getWeight(){
         int weight = 0;
         for (Item item : items){
             weight += item.getWeight();
