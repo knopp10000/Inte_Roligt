@@ -36,14 +36,6 @@ public class Player extends Target{
         money -= amount;
     }
 
-    public void addMoney(int moneyToAdd){
-        money += moneyToAdd;
-    }
-
-    public void withdrawMoney(int moneyToWithdraw){
-        money -= moneyToWithdraw;
-    }
-
    public Inventory getInventory(){
         return inventory;
     }
