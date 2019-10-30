@@ -15,7 +15,7 @@ class CombatTest {
     //Check that fetched player is not null
     @Test
     void checkPlayer(){
-        assertTrue(validCombat.getPlayer() != null);
+        assertTrue(validCombat.getPlayer() == player);
     }
 
     //Check that fetched monster array is not empty
@@ -25,31 +25,19 @@ class CombatTest {
         assertTrue(monsters.length > 0);
     }
 
-    //Check that turn order is correct
     @Test
     void checkTurnOrder(){
         Target[] turnOrder = validCombat.getTurnOrder();
         Target[] expectedTurnorder = {player, spider};
-        //SKAPA EQUALS FÖR PLAYER
-//        assertTrue(turnOrder[0].getSpeed() >= turnOrder[1].getSpeed());
         assertTrue(Arrays.equals(turnOrder, expectedTurnorder));
     }
 
-    //Test that combat executes and finishes
     @Test
     void testCombatExecution(){
-
-        while(!validCombat.isCombatFinished()) {
-                validCombat.setChosenTarget(spider);
-                validCombat.setChosenMove(Move.ATTACK);
-                validCombat.runTurn();
-            }
-
+        validCombat.start();
         assertFalse(validCombat.getPlayer().isAlive);
-
     }
 
-    //Test using item in combat
     @Test
     void testItemInCombat(){
         Effect effect =  new Effect("Flat damage", 'h', '-', false, 5);
@@ -59,6 +47,7 @@ class CombatTest {
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
 
