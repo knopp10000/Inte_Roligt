@@ -4,7 +4,7 @@ public class Effect {
     private Target target;
     private int duration;
     private int counter;
-    private boolean hasDuration, isContinuous,hasBeenApplied;
+    private boolean hasDuration, isContinuous, hasBeenApplied;
     private boolean isActive;
 
     private String name;
@@ -183,7 +183,7 @@ public class Effect {
                 return "No Status";
         }
     }
-    String getEffectType(){
+    private String getEffectType(){
             switch(operator) {
                 case '+':
                     return "Add";

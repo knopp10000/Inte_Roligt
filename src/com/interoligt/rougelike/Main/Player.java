@@ -32,6 +32,7 @@ public class Player extends Target{
         money += amount;
     }
 
+    @Override
     public void die(){
         isAlive = false;
     }
