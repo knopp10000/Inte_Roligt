@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RoomTest {
 
     private Room roomToTest;
-    Monster monsterToTest = new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 8, 4, 2);
+    Monster monsterToTest = new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 4, 2);
 
     @BeforeEach
     void resetRoom(){
@@ -46,7 +46,7 @@ class RoomTest {
     @Test
     void removeMonsterFromRoom(){
         roomToTest.addMonsterToRoom(monsterToTest);
-        Monster monsterToRemove = new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 8, 4, 2);
+        Monster monsterToRemove = new BasicMonster("Spider", 5, 12, Element.FIRE, 50, 4, 2);
         roomToTest.addMonsterToRoom(monsterToRemove);
         ArrayList<Monster> whatShouldRemain = new ArrayList<>(Arrays.asList(monsterToTest));
         roomToTest.removeMonsterFromRoom(monsterToRemove);
