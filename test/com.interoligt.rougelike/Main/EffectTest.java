@@ -21,6 +21,12 @@ class EffectTest {
     }
 
     @Test
+    void effectConstructorContNoDurationTest(){
+        Effect damage = new Effect("Damage decrease", 'd','-',true,5);
+        assertEquals("Name: Damage decrease, Stat: Damage, Effect: Subtract 5 each turn", damage.toString());
+    }
+
+    @Test
     void effectConstructorContTest(){
         Effect health = new Effect("Health Regen",'h', '+', true, 5, 5);
         assertEquals("Name: Health Regen, Stat: Health, Effect: Add 5 each turn, Duration: 5 turns", health.toString());
@@ -47,7 +53,6 @@ class EffectTest {
     void effectConstructorBlankNameTest(){
         assertThrows(NullPointerException.class, () -> {new Effect("    ",'h','+',true,5,0);});
     }
-
 
     @Test
     void effectHasDurationTrueTest(){
