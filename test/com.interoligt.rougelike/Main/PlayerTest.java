@@ -32,13 +32,4 @@ class PlayerTest {
     void testSpeedThrow(){
         assertThrows(IllegalArgumentException.class, () -> new Player( 1, 0,1, new Inventory(10)));
     }
-
-    //Test character is naked
-    @Test
-    void testEmptyEquipment(){
-        HashMap<Slot, Equippable> equipment = validPlayer.getEquipment();
-        for(HashMap.Entry slot : equipment.entrySet()){
-            assertTrue(slot.getValue() == null);
-        }
-    }
 }
