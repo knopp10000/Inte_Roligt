@@ -49,8 +49,8 @@ abstract public class Target{
     public void applyEffects(){
         for(Effect e : effectsNotActivedThisTurn){
             e.applyEffect();
-            effectsNotActivedThisTurn.remove(e);
         }
+        effectsNotActivedThisTurn.clear();
     }
 
     public void newTurnForEffects(){
