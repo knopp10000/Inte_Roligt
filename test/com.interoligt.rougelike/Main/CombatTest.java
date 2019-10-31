@@ -71,12 +71,12 @@ class CombatTest {
         }catch (Exception e){
             e.printStackTrace();
         }
+
         player.setChosenItem(grenade);
 
         itemCombat.start();
         assertFalse(player.getInventory().getItemsCopy().contains(grenade));
         assertFalse(itemCombat.getPlayer().isAlive);
-
 
 
     }
