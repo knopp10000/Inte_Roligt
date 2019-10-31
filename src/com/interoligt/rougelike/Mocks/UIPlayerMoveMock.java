@@ -20,6 +20,12 @@ public class UIPlayerMoveMock extends UIPlayerMove {
 
     @Override
     public Target chooseTarget(Monster[] monsters) {
+        for(Monster m: monsters){
+            if (m.isAlive){
+                return m;
+            }
+        }
+        System.out.println("Nani");
         return monsters[0];
     }
 

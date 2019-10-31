@@ -33,7 +33,7 @@ public class Room {
     }
 
     public ArrayList<Monster> showAllMonsters(){
-        return new ArrayList<Monster>(monsters);
+        return new ArrayList<>(monsters);
     }
 
 }

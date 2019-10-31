@@ -11,7 +11,7 @@ abstract public class Target{
     private int currentDamage;
     private int level;
 
-    boolean isAlive = true;
+    public boolean isAlive = true;
     ArrayList<Effect> effects = new ArrayList<>();
     ArrayList<Effect> effectsNotActivedThisTurn = new ArrayList<>();
 
