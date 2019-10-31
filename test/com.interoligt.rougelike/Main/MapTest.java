@@ -16,13 +16,32 @@ class MapTest {
     Room room21 = new Room(anka);
     Room room22 = new Room(anka);
 
-
     Room[][] roomArray = {{room00, room01, room02}, {room10, room11, room12}, {room20, room21, room22}};
     Map map = new Map(roomArray, 1, 1);
 
     @Test
+    void testGetCurrentRoom(){
+        assertEquals(room11, map.getCurrentRoom());
+    }
+
+    @Test
     void testMoveUp(){
         assertTrue(map.move('u') == room12);
+    }
+
+    @Test
+    void testMoveDown(){
+        assertTrue(map.move('d') == room10);
+    }
+
+    @Test
+    void testMoveLeft(){
+        assertTrue(map.move('l') == room01);
+    }
+
+    @Test
+    void testMoveRight(){
+        assertTrue(map.move('r') == room21);
     }
 
     @Test
@@ -32,25 +51,11 @@ class MapTest {
     }
 
     @Test
-    void testGetCurrentRoom(){
-        assertEquals(room11,map.getCurrentRoom());
-    }
-
-    @Test
-    void testMoveDown(){
-        assertTrue(map.move('d') == room10);
-    }
-
-    @Test
     void testMoveDownNull(){
         map.move('d');
         assertTrue(map.move('d') == null);
     }
 
-    @Test
-    void testMoveLeft(){
-        assertTrue(map.move('l') == room01);
-    }
 
     @Test
     void testMoveLeftNull(){
@@ -58,10 +63,6 @@ class MapTest {
         assertTrue(map.move('l') == null);
     }
 
-    @Test
-    void testMoveRight(){
-        assertTrue(map.move('r') == room21);
-    }
 
     @Test
     void testMoveRightNull(){
@@ -73,6 +74,4 @@ class MapTest {
     void testIllegalMove(){
         assertThrows(IllegalArgumentException.class, () -> map.move('k'));
     }
-
-
 }
