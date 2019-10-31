@@ -1,15 +1,21 @@
 package com.interoligt.rougelike.Mocks;
 
+import com.interoligt.rougelike.Main.Item;
 import com.interoligt.rougelike.Main.Monster;
 import com.interoligt.rougelike.Main.Move;
 import com.interoligt.rougelike.Main.Target;
 import com.interoligt.rougelike.UI.UIPlayerMove;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class UIPlayerMoveMock extends UIPlayerMove {
 
+    ArrayList<Move> moves;
+    int moveCounter = 0;
 
-
-    public UIPlayerMoveMock(){
+    public UIPlayerMoveMock(ArrayList<Move> moves){
+        this.moves = moves;
     }
 
     @Override
@@ -19,6 +25,10 @@ public class UIPlayerMoveMock extends UIPlayerMove {
 
     @Override
     public Move chooseMove(){
-        return Move.ATTACK;
+        if(moveCounter == moves.size()){
+            moveCounter = 0;
+        }
+        moveCounter++;
+        return moves.get(moveCounter-1);
     }
 }
