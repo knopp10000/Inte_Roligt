@@ -60,6 +60,7 @@ abstract public class Target{
     public void addEffect(Effect effect){
       if(effect != null) {
           effects.add(effect);
+          effect.setTarget(this);
           effectsNotActivedThisTurn.add(effect);
       }
     }
@@ -87,7 +88,6 @@ abstract public class Target{
     }
 
     //MANIPULATES TARGETS CURRENT HEALTH
-
     public void changeHealth(int health){
         if(isAlive){
            currentHP += health;

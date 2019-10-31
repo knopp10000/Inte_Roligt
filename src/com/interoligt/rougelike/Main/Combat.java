@@ -51,7 +51,6 @@ public class Combat {
         return turnOrder;
     }
 
-    //CHECKS IF ANY ENEMIES ARE ALIVE
     private boolean enemiesAreAlive(){
         for(Monster m : enemies){
             if(m.isAlive){
@@ -70,7 +69,6 @@ public class Combat {
 
     private Target getNextTargetWhoseTurnItIs(){
         int currentTurn = turnCounter;
-
         if(turnCounter == turnOrder.length-1){
             turnCounter = 0;
         }else{
