@@ -18,6 +18,14 @@ class EffectTest {
     void effectConstructorTest(){
         Effect speed = new Effect("Speed Increase",'s', '+', false, 5, 5);
         assertEquals(speed.toString(),"Name: Speed Increase, Stat: Speed, Effect: Add 5, Duration: 5 turns");
+
+    }
+
+    @Test
+    void effectConstructorContNoDurationTest(){
+        Effect damage = new Effect("Damage decrease", 'd','-',true,5);
+        assertEquals("Name: Damage decrease, Stat: Damage, Effect: Subtract 5 each turn", damage.toString());
+
     }
 
     @Test
@@ -47,7 +55,6 @@ class EffectTest {
     void effectConstructorBlankNameTest(){
         assertThrows(NullPointerException.class, () -> {new Effect("    ",'h','+',true,5,0);});
     }
-
 
     @Test
     void effectHasDurationTrueTest(){

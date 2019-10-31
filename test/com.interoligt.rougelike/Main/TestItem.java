@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestItem {
 
-    Item itemToTest = new Item("qwer", 1, 1);
+    Item itemToTest = new Item("qwer", 1, 1, null);
 
     //Check name contains letters
     @Test
@@ -30,19 +30,19 @@ public class TestItem {
     //Assert throws
     @Test
     void assertEmptyNameThrow(){
-        assertThrows(IllegalArgumentException.class, () -> new Item("", 1, 1));
+        assertThrows(IllegalArgumentException.class, () -> new Item("", 1, 1, null));
     }
     @Test
     void assertBlankNameThrow(){
-        assertThrows(IllegalArgumentException.class, () -> new Item(" ", 1, 1));
+        assertThrows(IllegalArgumentException.class, () -> new Item(" ", 1, 1, null));
     }
 
     @Test
     void assertWorthThrow(){
-        assertThrows(IllegalArgumentException.class, () -> new Item("qwer", 1, 0));
+        assertThrows(IllegalArgumentException.class, () -> new Item("qwer", 1, 0, null));
     }
     @Test
     void assertWeightThrow(){
-        assertThrows(IllegalArgumentException.class, () -> new Item("qwer", 0, 1));
+        assertThrows(IllegalArgumentException.class, () -> new Item("qwer", 0, 1, null));
     }
 }

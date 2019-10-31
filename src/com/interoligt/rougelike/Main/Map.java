@@ -12,20 +12,9 @@ public class Map{
         this.playerCordY = playerCordY;
     }
 
-    public void setPlayerCordX(int playerCordX) {
-        this.playerCordX = playerCordX;
-    }
 
-    public void setPlayerCordY(int playerCordY) {
-        this.playerCordY = playerCordY;
-    }
-
-    public int getPlayerCordX() {
-        return playerCordX;
-    }
-
-    public int getPlayerCordY() {
-        return playerCordY;
+    public Room getCurrentRoom(){
+        return map[playerCordX][playerCordY];
     }
 
     Room move(Character dir) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
