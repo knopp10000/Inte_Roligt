@@ -26,5 +26,6 @@ public class ProfilerTestProgram {
         Player player = new Player(250,3, 7, inventory);
         player.setChosenItem(carrotOfDeath);
 
+
     }
 }
