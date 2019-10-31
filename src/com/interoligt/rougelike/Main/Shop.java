@@ -32,20 +32,23 @@ public class Shop {
     }
 
     public boolean buyItem(Item item){
-        int itemWorth = item.getWorth();
+        if(item != null){
+            int itemWorth = item.getWorth();
 
-        if(player.getMoney() < itemWorth) {
-            return false;
-        }else{
-            try {
-                player.getInventory().addItem(item);
-                player.withdrawMoney(itemWorth);
-                return true;
-
-            }catch(Exception e){
+            if(player.getMoney() < itemWorth) {
                 return false;
-            }
+            }else{
+                try {
+                    player.getInventory().addItem(item);
+                    player.withdrawMoney(itemWorth);
+                    return true;
 
+                }catch(Exception e){
+                    return false;
+                }
+            }
+        }else {
+            throw new NullPointerException();
         }
     }
 

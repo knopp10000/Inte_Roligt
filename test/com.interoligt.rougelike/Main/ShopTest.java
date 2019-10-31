@@ -1,5 +1,6 @@
 package com.interoligt.rougelike.Main;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,60 +9,86 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShopTest {
 
-    Item firstItem = new Item("Sword", 2,2);
-    Item secondItem = new Item("Shield", 2,2);
-    Item thirdItem = new Item("Stone", 2,2);
+    Item firstItem = new Item("Sword", 2,100);
+    Item secondItem = new Item("Shield", 2,100);
+    Item thirdItem = new Item("Stone", 2,100);
+    Item fourthItem = new Item("Sword", 2, 100);
 
-    Item itemWithWorth100 = new Item("Sword", 2, 100);
     ArrayList<Item> items = new ArrayList<>();
-    Inventory inventory = new Inventory(100, items);
+    Inventory inventory = new Inventory(4, items);
     Player player = new Player(100, 100, 100, inventory);
-    Shop shop = new Shop(1);
+    Shop shop = new Shop(items,1);
 
 
+    @BeforeEach
+    void setPlayer(){
+        shop.setPlayer(player);
+        player.addMoney(500);
+    }
 
+    //T6
+    @Test
+    void testPurchaseWhilePlayersInventoryHasSpace(){
+        shop.buyItem(firstItem);
+        shop.buyItem(secondItem);
+        shop.buyItem(thirdItem);
+        assertTrue(shop.buyItem(fourthItem));
+    }
 
+    //T7
+    @Test
+    void testPurchaseWhilePlayersInventoryIsFull(){
+        items.add(firstItem);
+        items.add(secondItem);
+        items.add(thirdItem);
+        items.add(fourthItem);
+        assertFalse(shop.buyItem(secondItem));
+    }
+
+    //T3
     @Test
     void testPurchaseMoneyEqualsItemWorth() {
-        shop.setPlayer(player);
-        shop.addItem(itemWithWorth100);
-        player.addMoney(100);
-        shop.buyItem(itemWithWorth100);
+        shop.addItem(fourthItem);
+        player.withdrawMoney(400);
+        shop.buyItem(fourthItem);
         assertEquals(0, player.getMoney());
     }
 
-
+    //T4
     @Test
     void testPurchaseWhileItemIsNull(){
-        shop.setPlayer(player);
-        player.addMoney(100);
         assertThrows(NullPointerException.class,
                 ()->{
                    shop.buyItem(null);
                 });
     }
 
-
+    //T1
     @Test
-    void testPurchaseWithoutRequieredMoneyAmount(){
-        shop.setPlayer(player);
+    void testPurchaseWithMoneyAmount0(){
+        player.withdrawMoney(500);
         shop.addItem(firstItem);
         assertFalse(shop.buyItem(firstItem));
     }
 
+    //T2
+    @Test
+    void testPurchaseWithoutRequieredMoneyAmount(){
+        player.withdrawMoney(450);
+        assertFalse(shop.buyItem(firstItem));
+    }
+
+    //T5
     @Test
     void testPurchaseWithRequieredMoneyAmount(){
-        shop.setPlayer(player);
-        player.addMoney(100);
         shop.addItem(firstItem);
         assertTrue(shop.buyItem(firstItem));
-        assertEquals(98, player.getMoney());
+        assertEquals(400, player.getMoney());
     }
 
 
     @Test
     void testExceededMaximumItems(){
-
         Shop emptyShop = new Shop(2);
         emptyShop.addItem(firstItem);
         emptyShop.addItem(secondItem);
