@@ -3,53 +3,65 @@ package com.interoligt.rougelike.Main;
 
 import com.interoligt.rougelike.Mocks.UIPlayerMoveMock;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CombatTest {
     Player player = new Player(1,12, 2, new Inventory(10));
+    Player strongPlayer = new Player(50, 50, 50, new Inventory(1));
     Monster spider = new BasicMonster("Spider", 5, 5, Element.FIRE, 10, 2, 2);
-    Monster[] monsters = {spider};
-    Combat validCombat = new Combat(monsters, player, new UIPlayerMoveMock());
+    Monster pyttiPanna = new BasicMonster("Pytti-Panna", 2, 5, Element.WATER, 700, 300, 10);
+    Monster[] monsters = {spider, pyttiPanna};
+    Combat itemCombat = new Combat(monsters, player, new UIPlayerMoveMock(new ArrayList<Move> (Arrays.asList(Move.ITEM, Move.ATTACK))));
+    Combat normalCombat = new Combat(new Monster[] {spider}, player, new UIPlayerMoveMock(new ArrayList<Move> (Arrays.asList(Move.ATTACK))));
+    Combat winningCombat = new Combat(new Monster[] {spider}, strongPlayer, new UIPlayerMoveMock(new ArrayList<Move> (Arrays.asList(Move.ATTACK))));
 
     //Check that fetched player is not null
     @Test
     void checkPlayer(){
-        assertTrue(validCombat.getPlayer() != null);
+        assertTrue(normalCombat.getPlayer() == player);
     }
+
+    @Test
+    void checkPlayerThrows(){
+        assertThrows(IllegalArgumentException.class, () -> new Combat(monsters, null, new UIPlayerMoveMock(new ArrayList<Move> (Arrays.asList(Move.ITEM, Move.ATTACK)))));
+    }
+
+    @Test
+    void checkMonsterThrows(){
+        assertThrows(IllegalArgumentException.class, () -> new Combat(null, player, new UIPlayerMoveMock(new ArrayList<Move> (Arrays.asList(Move.ITEM, Move.ATTACK)))));
+    }
+
 
     //Check that fetched monster array is not empty
     @Test
     void checkMonsterArray(){
-        Monster[] monsters = validCombat.getMonsters();
+        Monster[] monsters = normalCombat.getMonsters();
         assertTrue(monsters.length > 0);
     }
 
-    //Check that turn order is correct
     @Test
     void checkTurnOrder(){
-        Target[] turnOrder = validCombat.getTurnOrder();
-        Target[] expectedTurnorder = {player, spider};
-        //SKAPA EQUALS FÖR PLAYER
-//        assertTrue(turnOrder[0].getSpeed() >= turnOrder[1].getSpeed());
-        assertTrue(Arrays.equals(turnOrder, expectedTurnorder));
+        Target[] turnOrder = normalCombat.getTurnOrder();
+        Target[] expectedTurnOrder = {player, spider};
+        assertTrue(Arrays.equals(turnOrder, expectedTurnOrder));
     }
 
-    //Test that combat executes and finishes
     @Test
-    void testCombatExecution(){
-
-        while(!validCombat.isCombatFinished()) {
-                validCombat.setChosenTarget(spider);
-                validCombat.setChosenMove(Move.ATTACK);
-                validCombat.runTurn();
-            }
-
-        assertFalse(validCombat.getPlayer().isAlive);
-
+    void testCombatWherePlayerDies(){
+        normalCombat.start();
+        assertFalse(normalCombat.getPlayer().isAlive);
     }
 
-    //Test using item in combat
+    @Test
+    void testCombatWhereEnemiesDie(){
+        winningCombat.start();
+        assertTrue(winningCombat.getPlayer().isAlive);
+        assertTrue(winningCombat.isCombatFinished());
+    }
+
     @Test
     void testItemInCombat(){
         Effect effect =  new Effect("Flat damage", 'h', '-', false, 5);
@@ -59,6 +71,14 @@ class CombatTest {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        player.setChosenItem(grenade);
+
+        itemCombat.start();
+        assertFalse(player.getInventory().getItemsCopy().contains(grenade));
+        assertFalse(itemCombat.getPlayer().isAlive);
+
+
     }
 
 

@@ -32,6 +32,11 @@ class MapTest {
     }
 
     @Test
+    void testGetCurrentRoom(){
+        assertEquals(room11,map.getCurrentRoom());
+    }
+
+    @Test
     void testMoveDown(){
         assertTrue(map.move('d') == room10);
     }

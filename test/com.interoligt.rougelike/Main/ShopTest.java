@@ -14,6 +14,7 @@ class ShopTest {
     Item thirdItem = new Item("Stone", 2,100);
     Item fourthItem = new Item("Sword", 2, 100);
 
+
     ArrayList<Item> items = new ArrayList<>();
     Inventory inventory = new Inventory(4, items);
     Player player = new Player(100, 100, 100, inventory);

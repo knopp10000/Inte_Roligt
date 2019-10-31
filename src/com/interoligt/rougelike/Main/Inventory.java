@@ -14,6 +14,8 @@ public class Inventory {
                 }else{
                     throw new IllegalArgumentException("items exceed the maxItemCount");
                 }
+            }else{
+                this.items = new ArrayList<Item>();
             }
             this.maxItemCount = maxItemCount;
         }else{
@@ -28,14 +30,18 @@ public class Inventory {
     }
 
     public void addItem(Item item) throws Exception {
-       if (getItemCount() >=  maxItemCount){
+       if (items.size() ==  maxItemCount){
            throw new Exception();
        } else {
            items.add(item);
        }
     }
 
-     public int getWeight(){
+    public ArrayList<Item> getItemsCopy() {
+        return new ArrayList<Item>(items);
+    }
+
+    public int getWeight(){
         int weight = 0;
         for (Item item : items){
             weight += item.getWeight();

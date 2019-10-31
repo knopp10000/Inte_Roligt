@@ -1,6 +1,5 @@
 package com.interoligt.rougelike.Main;
 
-import com.interoligt.rougelike.Mocks.UIPlayerMoveMock;
 import com.interoligt.rougelike.UI.UIPlayerMove;
 
 public class Combat {
@@ -8,8 +7,6 @@ public class Combat {
     private Player player;
     private Target[] turnOrder;
     private int turnCounter = 0;
-    private Move chosenMove;
-    private Target chosenTarget;
     private UIPlayerMove uiPlayerMove;
 
     public Combat(Monster[] enemies, Player player, UIPlayerMove uiPlayerMove){
@@ -25,14 +22,16 @@ public class Combat {
         }
         this.uiPlayerMove = uiPlayerMove;
         this.turnOrder = new Target[enemies.length+1];
-        setTurnOrder();
     }
 
-    //DETERMINES TURN ORDER
+    public void start(){
+        setTurnOrder();
+        while (!isCombatFinished()){
+            runTurn();
+        }
+    }
+
     private void setTurnOrder(){
-//        for(int i = 0; i < enemies.length; i++){
-//            turnOrder[i] = enemies[i];
-//        }
         System.arraycopy(enemies,0,turnOrder,0,enemies.length);
         turnOrder[enemies.length] = player;
 
@@ -45,7 +44,6 @@ public class Combat {
                 }
             }
         }
-
     }
 
     public Target[] getTurnOrder() {
@@ -84,8 +82,8 @@ public class Combat {
     //RUNS TURN FOR NEXT ACTOR
     public void runTurn(){
         Target activeTarget = getNextTargetWhoseTurnItIs();
-        activeTarget.newTurnForEffects();
         if(activeTarget.isAlive) {
+            activeTarget.newTurnForEffects();
             activeTarget.applyEffects();
             if (activeTarget instanceof Player) {
                 Move move = uiPlayerMove.chooseMove();
@@ -97,20 +95,7 @@ public class Combat {
             activeTarget.applyEffects();
         }
     }
-
-
-    //RECEIVES NEXT MOVE AND TARGET REQUESTED BY USER TO USE FOR NEXT PLAYER ROUND
-    public void setChosenMove(Move chosenMove){
-        this.chosenMove = chosenMove;
-    }
-
-    public void setChosenTarget(Target chosenTarget){
-        this.chosenTarget = chosenTarget;
-    }
-
-
 //CHECKS IF PLAYER IS ALIVE AND IF ENEMIES ARE ALIVE TO DETERMINE IF COMBAT IS OVER
-
     public boolean isCombatFinished(){
         if(!enemiesAreAlive()){
             return true;
@@ -120,5 +105,4 @@ public class Combat {
         }
         return false;
     }
-
 }

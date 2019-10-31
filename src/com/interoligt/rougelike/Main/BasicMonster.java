@@ -16,6 +16,11 @@ public class BasicMonster extends Monster {
     }
 
     @Override
+    Move chooseMove() {
+        return Move.ATTACK;
+    }
+
+    @Override
     int getExperienceReward() {
         return expPerLevel*super.getLevel();
     }

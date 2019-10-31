@@ -94,7 +94,7 @@ abstract public class Target{
            if (currentHP > maxHP){
                currentHP = maxHP;
            }
-           if(getCurrentHP() <= 0) {
+           if(currentHP <= 0) {
                currentHP = 0;
                die();
            }
@@ -127,10 +127,6 @@ abstract public class Target{
 
     int getSpeed(){
         return baseSpeed;
-    }
-
-    String getName(){
-        return "Player";
     }
 
     int getCurrentSpeed(){
