@@ -37,9 +37,6 @@ public class Player extends Target{
         isAlive = false;
     }
 
-
-
-    //APPLIES ARGUMENT MOVE TO ARGUMENT TARGET
     public void applyMove(Target chosenTarget, Move move){
         switch(move){
             case ATTACK:

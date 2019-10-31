@@ -50,9 +50,5 @@ class CombatTest {
         }
 
     }
-
-
-
-
 }
 

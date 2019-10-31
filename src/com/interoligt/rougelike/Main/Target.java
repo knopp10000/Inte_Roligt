@@ -98,11 +98,8 @@ abstract public class Target{
                currentHP = 0;
                die();
            }
-
         }
     }
-
-    //ADDS NEGATIVE OF CURRENT DAMAGE TO TARGETS HEALTH
 
     public void attack(Target target){
         target.changeHealth(-(getCurrentDamage()));

@@ -79,23 +79,24 @@ public class Combat {
         return turnOrder[currentTurn];
     }
 
-    //RUNS TURN FOR NEXT ACTOR
     public void runTurn(){
         Target activeTarget = getNextTargetWhoseTurnItIs();
         if(activeTarget.isAlive) {
             activeTarget.newTurnForEffects();
             activeTarget.applyEffects();
-            if (activeTarget instanceof Player) {
-                Move move = uiPlayerMove.chooseMove();
-                Target target = uiPlayerMove.chooseTarget(enemies);
-                player.applyMove(target, move);
-            } else if (activeTarget instanceof Monster) {
-                activeTarget.attack(player);
+            if(activeTarget.isAlive){
+                if (activeTarget instanceof Player) {
+                    Move move = uiPlayerMove.chooseMove();
+                    Target target = uiPlayerMove.chooseTarget(enemies);
+                    player.applyMove(target, move);
+                } else if (activeTarget instanceof Monster) {
+                    activeTarget.attack(player);
+                }
+                activeTarget.applyEffects();
             }
-            activeTarget.applyEffects();
         }
     }
-//CHECKS IF PLAYER IS ALIVE AND IF ENEMIES ARE ALIVE TO DETERMINE IF COMBAT IS OVER
+
     public boolean isCombatFinished(){
         if(!enemiesAreAlive()){
             return true;
