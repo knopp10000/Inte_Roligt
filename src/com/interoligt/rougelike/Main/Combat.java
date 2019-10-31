@@ -51,7 +51,6 @@ public class Combat {
         return turnOrder;
     }
 
-    //CHECKS IF ANY ENEMIES ARE ALIVE
     private boolean enemiesAreAlive(){
         for(Monster m : enemies){
             if(m.isAlive){
@@ -70,7 +69,6 @@ public class Combat {
 
     private Target getNextTargetWhoseTurnItIs(){
         int currentTurn = turnCounter;
-
         if(turnCounter == turnOrder.length-1){
             turnCounter = 0;
         }else{
@@ -79,23 +77,24 @@ public class Combat {
         return turnOrder[currentTurn];
     }
 
-    //RUNS TURN FOR NEXT ACTOR
     public void runTurn(){
         Target activeTarget = getNextTargetWhoseTurnItIs();
         if(activeTarget.isAlive) {
             activeTarget.newTurnForEffects();
             activeTarget.applyEffects();
-            if (activeTarget instanceof Player) {
-                Move move = uiPlayerMove.chooseMove();
-                Target target = uiPlayerMove.chooseTarget(enemies);
-                player.applyMove(target, move);
-            } else if (activeTarget instanceof Monster) {
-                activeTarget.attack(player);
+            if(activeTarget.isAlive){
+                if (activeTarget instanceof Player) {
+                    Move move = uiPlayerMove.chooseMove();
+                    Target target = uiPlayerMove.chooseTarget(enemies);
+                    player.applyMove(target, move);
+                } else if (activeTarget instanceof Monster) {
+                    activeTarget.attack(player);
+                }
+                activeTarget.applyEffects();
             }
-            activeTarget.applyEffects();
         }
     }
-//CHECKS IF PLAYER IS ALIVE AND IF ENEMIES ARE ALIVE TO DETERMINE IF COMBAT IS OVER
+
     public boolean isCombatFinished(){
         if(!enemiesAreAlive()){
             return true;

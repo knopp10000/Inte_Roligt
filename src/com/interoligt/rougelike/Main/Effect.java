@@ -109,6 +109,7 @@ public class Effect {
                 applyContinuousEffect();
             } else {
                 applySingleEffect();
+                isActive = false;
             }
         }
 

@@ -49,8 +49,8 @@ abstract public class Target{
     public void applyEffects(){
         for(Effect e : effectsNotActivedThisTurn){
             e.applyEffect();
-            effectsNotActivedThisTurn.remove(e);
         }
+        effectsNotActivedThisTurn.clear();
     }
 
     public void newTurnForEffects(){
@@ -60,6 +60,7 @@ abstract public class Target{
     public void addEffect(Effect effect){
       if(effect != null) {
           effects.add(effect);
+          effect.setTarget(this);
           effectsNotActivedThisTurn.add(effect);
       }
     }
@@ -87,7 +88,6 @@ abstract public class Target{
     }
 
     //MANIPULATES TARGETS CURRENT HEALTH
-
     public void changeHealth(int health){
         if(isAlive){
            currentHP += health;
@@ -98,11 +98,8 @@ abstract public class Target{
                currentHP = 0;
                die();
            }
-
         }
     }
-
-    //ADDS NEGATIVE OF CURRENT DAMAGE TO TARGETS HEALTH
 
     public void attack(Target target){
         target.changeHealth(-(getCurrentDamage()));
