@@ -17,7 +17,8 @@ class CombatTest {
     Inventory inventoryWithStuff = new Inventory(5, items);
 
     Player weakPlayer = new Player(1,12, 2, inventoryWithStuff);
-    Player strongPlayer = new Player(50, 50, 50, inventoryWithStuff);
+    Player strongPlayer = new Player(2000, 50, 1, inventoryWithStuff);
+
 
     Monster weakMonster = new BasicMonster("Spider", 5, 5, Element.FIRE, 10, 2, 2);
     Monster strongMonster = new BasicMonster("Pytti-Panna", 2, 5, Element.WATER, 100, 50, 10);
