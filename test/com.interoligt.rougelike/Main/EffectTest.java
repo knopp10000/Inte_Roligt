@@ -18,14 +18,12 @@ class EffectTest {
     void effectConstructorTest(){
         Effect speed = new Effect("Speed Increase",'s', '+', false, 5, 5);
         assertEquals(speed.toString(),"Name: Speed Increase, Stat: Speed, Effect: Add 5, Duration: 5 turns");
-
     }
 
     @Test
     void effectConstructorContNoDurationTest(){
         Effect damage = new Effect("Damage decrease", 'd','-',true,5);
         assertEquals("Name: Damage decrease, Stat: Damage, Effect: Subtract 5 each turn", damage.toString());
-
     }
 
     @Test
@@ -87,11 +85,6 @@ class EffectTest {
         assertEquals(damage.getStat(),'d');
     }
     @Test
-    void getStatusNameDamageTest(){
-        Effect damage = new Effect("Increase damage", 'd', '+',false, 1);
-        assertEquals(damage.getStatusName(),"Damage");
-    }
-    @Test
     void getStatusNameSpeedTest(){
         Effect health = new Effect("Increase Speed", 's', '+',false, 1);
         assertEquals(health.getStatusName(),"Speed");
@@ -116,8 +109,7 @@ class EffectTest {
         Effect damage = new Effect("Increase Damage", 'd', '+', false, 1, 4);
         assertEquals(damage.getDuration(), 4);
     }
-
-        @Test
+    @Test
     void applyEffectDamageIncreaseWithoutDurationTest(){
         Effect damage = new Effect("Increase Damage", 'd', '+', false, 50);
         damage.setTarget(target);
@@ -159,7 +151,6 @@ class EffectTest {
         speed.applyEffect();
         speed.applyEffect();
         assertEquals(target.getCurrentSpeed(),6);
-
     }
     @Test
     void applyEffectHealthIncreaseWithDurationTest(){
@@ -176,7 +167,6 @@ class EffectTest {
         health.applyEffect();
         assertEquals(target.getCurrentHP(), 6000);
     }
-
     @Test
     void removeContinuousEffectSpeedDecreaseWithDurationTest() {
         Effect speed = new Effect("Speed Decrease", 's', '-', true, 1, 5);
@@ -208,5 +198,15 @@ class EffectTest {
         assertEquals(target.getCurrentSpeed(), 25);
         speed.applyEffect();
         assertEquals(target.getCurrentSpeed(), 10);
+    }
+    @Test
+    void removeTargetTest(){
+        Effect speed = new Effect("Increase Damage", 's', '+', false, 15);
+        speed.setTarget(target);
+        speed.applyEffect();
+        speed.setTarget(null);
+        speed.applyEffect();
+        assertFalse(speed.isActive());
+        assertEquals(25,target.getCurrentSpeed());
     }
 }
