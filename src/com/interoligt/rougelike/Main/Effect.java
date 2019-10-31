@@ -13,22 +13,27 @@ public class Effect {
     private char stat, operator;
 
 
-    Effect(String name, char stat, char operator, boolean isContinuous, int value, int duration) throws IllegalArgumentException {
-        this(name, stat,operator,isContinuous,value);
-        if(duration<=0){
-            throw new IllegalArgumentException("If duration is added to constructor, the value has to be larger than 0");
+    Effect(String name, char stat, char operator, boolean isContinuous,
+           int value, int duration) throws IllegalArgumentException {
+        this(name, stat, operator, isContinuous, value);
+        if (duration <= 0) {
+            throw new IllegalArgumentException("If duration is added to " +
+                    "constructor, the value has to be larger than 0");
         }
         this.duration = duration;
         counter = duration;
         hasDuration = true;
     }
 
-    Effect (String name, char stat, char operator, boolean isContinuous, int value) throws IllegalArgumentException,NullPointerException{
-        if(name == null || name.isBlank()){
+    Effect(String name, char stat, char operator, boolean isContinuous,
+           int value) throws IllegalArgumentException, NullPointerException {
+        if (name == null || name.isBlank()) {
             throw new NullPointerException("Name cannot be null or blank");
-        }
-        else if(!(stat=='d'||stat=='h'||stat=='s')||!(operator=='+'||operator=='-')||value<=0){
-            throw new IllegalArgumentException("Stat has to be d (damage), h (health) or s (speed), operator has to be + or -, and value has to be a positive integer");
+        } else if (!(stat == 'd' || stat == 'h' || stat == 's') || !(operator == '+' ||
+                operator == '-') || value <= 0) {
+            throw new IllegalArgumentException("Stat has to be d (damage), " +
+                    "h (health) or s (speed), operator has to be + or -, and " +
+                    "value has to be a positive integer");
         }
 
         this.name = name;
@@ -40,54 +45,62 @@ public class Effect {
 
     }
 
-    boolean hasDuration(){
+    boolean hasDuration() {
         return hasDuration;
     }
-    boolean isContinuous(){
+
+    boolean isContinuous() {
         return isContinuous;
     }
 
-    void setTarget(Target target){
-        if(this.target == null) {
-            this.target = target;
+    boolean isActive() {
+        return isActive;
+    }
+
+    void setTarget(Target newTarget) {
+        if (target == null && newTarget != null) {
+            this.target = newTarget;
             target.addEffect(this);
+        } else if (newTarget == null && target != null) {
+            removeEffect();
+            target = null;
         }
     }
-    int getDuration(){
-        if(hasDuration) {
+
+    int getDuration() {
+        if (hasDuration) {
             return duration;
-        }
-        else{
+        } else {
             throw new NullPointerException("Effect has no duration.");
         }
     }
-    double getValue(){
+
+    double getValue() {
         return value;
     }
 
-    int getValueWithSign(){
-        if(operator=='-'){
+    int getValueWithSign() {
+        if (operator == '-') {
             return -value;
-        }
-        else{
+        } else {
             return value;
         }
     }
 
-    char getStat(){
+    char getStat() {
         return stat;
     }
-    int getCounter(){
-        if(hasDuration){
+
+    int getCounter() {
+        if (hasDuration) {
             return counter;
-        }
-        else{
+        } else {
             throw new NullPointerException("Effect has no duration.");
         }
     }
 
-    public void applyEffect(){
-        if(isActive) {
+    void applyEffect() {
+        if (isActive) {
             if (hasDuration && isContinuous) {
                 applyContinuousDurationEffect();
             } else if (hasDuration) {
@@ -96,43 +109,46 @@ public class Effect {
                 applyContinuousEffect();
             } else {
                 applySingleEffect();
+                isActive = false;
             }
         }
 
     }
-    private void applyContinuousDurationEffect(){
-        if(counter > 0){
+
+    private void applyContinuousDurationEffect() {
+        if (counter > 0) {
             applyEffectSwitch();
-        }
-        else{
+        } else {
             removeEffect();
         }
         --counter;
     }
-    private void applyDurationEffect(){
-        if(counter > 0){
+
+    private void applyDurationEffect() {
+        if (counter > 0) {
             applySingleEffect();
-        }
-        else{
+        } else {
             removeEffect();
         }
         --counter;
 
 
     }
-    private void applyContinuousEffect(){
+
+    private void applyContinuousEffect() {
         applyEffectSwitch();
     }
 
-   private void applySingleEffect(){
-        if(!hasBeenApplied) {
+    private void applySingleEffect() {
+        if (!hasBeenApplied) {
             applyEffectSwitch();
         }
         hasBeenApplied = true;
     }
 
-    public void removeEffect(){
-        if(hasDuration && !isContinuous){
+    //Not private due to possible implementation of cleansing effects
+    void removeEffect() {
+        if (hasDuration && !isContinuous) {
             switch (stat) {
                 case 'h':
                     target.changeHealth(-totValue);
@@ -144,16 +160,16 @@ public class Effect {
                     target.changeDamage(-totValue);
                     break;
                 default:
-                    throw new IllegalArgumentException("Only h (health), s (speed) and d (damage) are valid inputs");
+                    throw new IllegalArgumentException("Only h (health), " +
+                            "s (speed) and d (damage) are valid inputs");
             }
         }
 
         isActive = false;
         target.removeEffect(this);
-
     }
 
-    private void applyEffectSwitch() throws IllegalArgumentException{
+    private void applyEffectSwitch() throws IllegalArgumentException {
         totValue += getValueWithSign();
         switch (stat) {
             case 'h':
@@ -166,13 +182,15 @@ public class Effect {
                 target.changeDamage(getValueWithSign());
                 break;
             default:
-                throw new IllegalArgumentException("Only h (health), s (speed) and d (damage) are valid inputs");
+                throw new IllegalArgumentException("Only h (health), s (speed) " +
+                        "and d (damage) are valid inputs");
         }
 
     }
 
-    String getStatusName(){
-        switch(stat) {
+    //Break not used in switch since each case has return
+    String getStatusName() {
+        switch (stat) {
             case 'h':
                 return "Health";
             case 's':
@@ -183,28 +201,29 @@ public class Effect {
                 return "No Status";
         }
     }
-    private String getEffectType(){
-            switch(operator) {
-                case '+':
-                    return "Add";
-                case '-':
-                    return "Subtract";
-                default:
-                    return "No Effect";
-            }
+
+    //Break not used in switch since each case has return
+    private String getEffectType() {
+        switch (operator) {
+            case '+':
+                return "Add";
+            case '-':
+                return "Subtract";
+            default:
+                return "No Effect";
         }
+    }
+
     @Override
-    public String toString(){
-        String str = "Name: " + name + ", Stat: " + getStatusName() + ", Effect: " + getEffectType() + " " + value;
-        if(isContinuous){
+    public String toString() {
+        String str = "Name: " + name + ", Stat: " + getStatusName() +
+                ", Effect: " + getEffectType() + " " + value;
+        if (isContinuous) {
             str += " each turn";
         }
-        if(hasDuration){
+        if (hasDuration) {
             str += ", Duration: " + duration + " turns";
         }
         return str;
     }
-
-
-
 }

@@ -10,14 +10,8 @@ public class SampleBossMonster extends BossMonster {
         super(name, level, experienceReward, element, baseHealth, baseDamage, baseSpeed);
     }
 
-
     @Override
     void die() {
-
-    }
-
-    @Override
-    Move chooseMove() {
-        return Move.ATTACK;
+        isAlive = false;
     }
 }

@@ -32,14 +32,24 @@ public class Player extends Target{
         money += amount;
     }
 
+
+//    public void unEquipItem(Slot slot){
+//        for(Item i : inventory){
+//            if(i == null){
+//                i = equipment.get(slot);
+//                break;
+//            }
+//        }
+//        equipment.remove(slot);
+//    }
+
+    //CHANGES ALIVE VARIABLE FOR PLAYER
     @Override
-    public void die(){
-        isAlive = false;
-    }
+        public void die(){
+            isAlive = false;
+        }
 
 
-
-    //APPLIES ARGUMENT MOVE TO ARGUMENT TARGET
     public void applyMove(Target chosenTarget, Move move){
         switch(move){
             case ATTACK:

@@ -17,11 +17,6 @@ class BasicMonsterTest {
     }
 
     @Test
-    void chooseMoveTest() {
-        assertEquals(Move.ATTACK,monster.chooseMove());
-    }
-
-    @Test
     void isActiveTest(){
         assertTrue(monster.isActive());
     }
